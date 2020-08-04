@@ -517,7 +517,7 @@ public class Deck {
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		Baraja.printCurrentDeck();
-		Baraja.faceUpSlipCutCurrentDeck(5);
+		Baraja.slipCutCurrentDeck(5);
 		Baraja.printCurrentDeck();
 		/*Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(26);
