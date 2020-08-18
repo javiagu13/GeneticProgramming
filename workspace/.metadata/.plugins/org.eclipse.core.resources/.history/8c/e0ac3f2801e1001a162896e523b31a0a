@@ -1,0 +1,33 @@
+import java.util.Random;
+public class javiGP {
+	/*
+	cutCurrentDeck(int N){									cut
+	slipCutCurrentDeck(int N){								slipcut
+	faceUpSlipCutCurrentDeck(int N){						slipcutup
+	insertFanCurrentDeck(int Amount, int N){				insertfan
+	faceUpInsertFanCurrentDeck(int Amount, int N){			insertfanup
+	pealCurrentDeck(int N){									peal
+	faceUpPealCurrentDeck(int N){							pealup
+	inPartialFaroCurrentDeck(int N){						infaro
+	faceUpInPartialFaroCurrentDeck(int N){					infaroup
+	outPartialFaroCurrentDeck(int N){						outfaro
+	faceUpOutPartialFaroCurrentDeck(int N){					outfaroup
+	*/
+	
+	//SETTINGS
+	private String[] operators=["cut","slipcut","slipcutup","insertfan","insertfanup","peal","pealup","infaro","infaroup","outfaro","outfaroup"]
+	
+	private int MIN=1; //Minimum number
+	private int MAX=52; //Minimum number
+	
+	public int randomIntBetween(int min, int max){
+		 	Random rand=new Random();
+		    int randomNum = rand.nextInt((max - min) + 1) + min;
+		    return randomNum;
+	}
+	
+	public static void main(String[] args) {
+		ZuhaitzBitarra<String> tree = new ZuhaitzBitarra<String>();
+		
+	}
+}
