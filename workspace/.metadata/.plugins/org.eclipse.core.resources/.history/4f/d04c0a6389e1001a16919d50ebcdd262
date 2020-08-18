@@ -129,6 +129,5 @@ public class javiGP {
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
 		gp.applyPopulationToDeck(deck);
-		
 	}
 }

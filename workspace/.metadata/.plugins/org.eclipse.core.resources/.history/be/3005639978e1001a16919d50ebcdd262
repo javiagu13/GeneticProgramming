@@ -168,7 +168,7 @@ public class ZuhaitzBitarra<E> {
 				lista.add(this.left.info);
 				this.left.inOrdenList(lista);
 			}
-			
+			System.out.print(getInfo() + " ");
 			if (this.hasRight()){
 				lista.add(this.right.info);
 				this.right.inOrdenList(lista);

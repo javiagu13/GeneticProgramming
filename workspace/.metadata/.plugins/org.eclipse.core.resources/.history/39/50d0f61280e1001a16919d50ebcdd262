@@ -128,7 +128,6 @@ public class javiGP {
 		Deck deck = new Deck();
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		gp.applyPopulationToDeck(deck);
-		
+		gp.applyIndividualToDeck(gp.population.get(998),deck);
 	}
 }

@@ -76,8 +76,7 @@ public class javiGP {
 		return Individual;
 	}
 	
-	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){
-		System.out.println(Individual.inOrdenList().toString());
+	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){//DEck deck
 		ArrayList<String> operationsList = Individual.inOrdenList();
 		for(int i=0;i<operationsList.size()-1;i=i+2){
 	        switch(operationsList.get(i)) 
@@ -113,14 +112,7 @@ public class javiGP {
 		            	System.out.println("ERROR: ENTERED IN DEFAULT STATE");
 		        }
 		}
-		deck.printCurrentDeck();
 		return deck;
-	}
-	
-	public void applyPopulationToDeck(Deck deck){
-		for(int i=0; i<this.population.size()-1;i++){
-			applyIndividualToDeck(population.get(i),deck);
-		}
 	}
 	
 	public static void main(String[] args) {
@@ -128,7 +120,6 @@ public class javiGP {
 		Deck deck = new Deck();
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		gp.applyPopulationToDeck(deck);
-		
+		gp.applyIndividualToDeck(gp.population.get(998),deck);
 	}
 }

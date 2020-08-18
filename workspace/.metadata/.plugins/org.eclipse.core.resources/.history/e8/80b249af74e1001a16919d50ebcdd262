@@ -1,8 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 
-
-
+import ZuhaitzBitarra.Adabegi;
 
 public class javiGP {
 	/*
@@ -77,58 +76,20 @@ public class javiGP {
 	}
 	
 	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){
-		System.out.println(Individual.inOrdenList().toString());
-		ArrayList<String> operationsList = Individual.inOrdenList();
-		for(int i=0;i<operationsList.size()-1;i=i+2){
-	        switch(operationsList.get(i)) 
-		        { 
-		            case "cut": 
-		            	deck.cutCurrentDeck(Integer.parseInt(operationsList.get(i+1))); 
-		                break; 
-		            case "slipcut": 
-		            	deck.slipCutCurrentDeck(Integer.parseInt(operationsList.get(i+1))); 
-		                break; 
-		            case "slipcutup": 
-		            	deck.faceUpSlipCutCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "peal": 
-		            	deck.pealCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "pealup": 
-		            	deck.faceUpPealCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "infaro": 
-		            	deck.inPartialFaroCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "infaroup": 
-		            	deck.faceUpInPartialFaroCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "outfaro": 
-		            	deck.outPartialFaroCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break; 
-		            case "outfaroup": 
-		            	deck.faceUpOutPartialFaroCurrentDeck(Integer.parseInt(operationsList.get(i+1)));
-		                break;
-		            default: 
-		            	System.out.println("ERROR: ENTERED IN DEFAULT STATE");
-		        }
-		}
-		deck.printCurrentDeck();
+		Adabegi<String> e = Individual.getRoot();
+		if (this.hasLeft())
+			this.left.inordenInprimatu();
+		System.out.print(getInfo() + " ");
+		if (this.hasRight())
+			this.right.inordenInprimatu();
 		return deck;
-	}
-	
-	public void applyPopulationToDeck(Deck deck){
-		for(int i=0; i<this.population.size()-1;i++){
-			applyIndividualToDeck(population.get(i),deck);
-		}
 	}
 	
 	public static void main(String[] args) {
 		javiGP gp = new javiGP();
-		Deck deck = new Deck();
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		gp.applyPopulationToDeck(deck);
+		
 		
 	}
 }

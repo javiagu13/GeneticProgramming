@@ -163,15 +163,15 @@ public class ZuhaitzBitarra<E> {
 			return true;
 		}
 		
-		private ArrayList<E> inOrdenList(ArrayList<E> lista) {
+		private ArrayList<E> inordenList(ArrayList<E> lista) {
 			if (this.hasLeft()){
 				lista.add(this.left.info);
-				this.left.inOrdenList(lista);
+				this.left.inordenList(lista);
 			}
-			
+			System.out.print(getInfo() + " ");
 			if (this.hasRight()){
 				lista.add(this.right.info);
-				this.right.inOrdenList(lista);
+				this.right.inordenList(lista);
 			}
 			return lista;
 		}
@@ -294,11 +294,5 @@ public class ZuhaitzBitarra<E> {
 		if (this.isEmpty())
 			return "";
 		return this.root.toString();
-	}
-	
-	public ArrayList<E> inOrdenList(){
-		ArrayList<E> List = new ArrayList<>(); 
-		List.add(this.root.info);
-		return this.root.inOrdenList(List);
 	}
 }

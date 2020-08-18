@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 
 public class ZuhaitzBitarra<E> {
 
@@ -77,11 +75,11 @@ public class ZuhaitzBitarra<E> {
 				if (this.hasLeft())
 					emaitza.append(this.getLeft().toString());
 				else
-					emaitza.append("");
+					emaitza.append("â—� ");
 				if (this.hasRight())
 					emaitza.append(this.getRight().toString());
 				else
-					emaitza.append("");
+					emaitza.append("â—� ");
 			}
 			emaitza.append("] ");
 			return emaitza.toString();
@@ -161,19 +159,6 @@ public class ZuhaitzBitarra<E> {
 			if (this.hasRight() && !this.getRight().sameStructure(bestea.getRight()))
 				return false;
 			return true;
-		}
-		
-		private ArrayList<E> inOrdenList(ArrayList<E> lista) {
-			if (this.hasLeft()){
-				lista.add(this.left.info);
-				this.left.inOrdenList(lista);
-			}
-			
-			if (this.hasRight()){
-				lista.add(this.right.info);
-				this.right.inOrdenList(lista);
-			}
-			return lista;
 		}
 	}
 
@@ -292,13 +277,7 @@ public class ZuhaitzBitarra<E> {
 	
 	public String toString() {
 		if (this.isEmpty())
-			return "";
+			return "asdf";
 		return this.root.toString();
-	}
-	
-	public ArrayList<E> inOrdenList(){
-		ArrayList<E> List = new ArrayList<>(); 
-		List.add(this.root.info);
-		return this.root.inOrdenList(List);
 	}
 }
