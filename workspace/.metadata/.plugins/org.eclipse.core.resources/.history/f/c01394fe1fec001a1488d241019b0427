@@ -477,6 +477,7 @@ public class Deck {
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		Baraja.inPartialFaroCurrentDeck(23);
+		Baraja.outPartialFaroCurrentDeck(17);
 		Baraja.cutCurrentDeck(35);
 		Baraja.printCurrentDeck();
 		/*Baraja.outPartialFaroCurrentDeck(26);

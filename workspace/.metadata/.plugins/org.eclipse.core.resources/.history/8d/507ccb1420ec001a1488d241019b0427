@@ -24,7 +24,7 @@ public class javiGP {
 	private int MIN=1; //Minimum number
 	private int MAX=52; //Minimum number
 	private int POPULATIONSIZE=1000000;
-	private int DEPTH=2; //DEPTH OF OPERATIONS!! tree size / 2
+	private int DEPTH=3; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -122,7 +122,7 @@ public class javiGP {
 			Deck finaldeck = applyIndividualToDeck(population.get(i),deck);
 			//System.out.println(this.population.get(i).toString());
 			//finaldeck.printCurrentDeck();
-			if (finaldeck.currentEqualToFinalDeck("[5h, 11c, 6h, 10c, 7h, 9c, 8h, 8c, 9h, 7c, 10h, 6c, 5c, 4c, 3c, 2c, 1c, 11h, 1s, 12h, 2s, 13h, 3s, 13d, 4s, 12d, 5s, 11d, 6s, 10d, 7s, 9d, 8s, 8d, 9s, 7d, 10s, 6d, 11s, 5d, 12s, 4d, 13s, 3d, 1h, 2d, 2h, 1d, 3h, 13c, 4h, 12c]")){
+			if (finaldeck.currentEqualToFinalDeck("[5h, 11c, 6h, 10c, 7h, 9c, 8h, 8c, 9h, 7c, 10h, 6c, 5c, 4c, 3c, 2c, 1c, 11h, 9s, 1s, 7d, 12h, 10s, 2s, 6d, 13h, 11s, 3s, 5d, 13d, 12s, 4s, 4d, 12d, 13s, 5s, 3d, 11d, 1h, 6s, 2d, 10d, 2h, 7s, 1d, 9d, 3h, 8s, 13c, 8d, 4h, 12c]")){
 				finaldeck.printCurrentDeck();
 				System.out.println(this.population.get(i).toString());
 				System.out.println("SUCCESS!!!");

@@ -24,7 +24,7 @@ public class javiGP {
 	private int MIN=1; //Minimum number
 	private int MAX=52; //Minimum number
 	private int POPULATIONSIZE=1000000;
-	private int DEPTH=2; //DEPTH OF OPERATIONS!! tree size / 2
+	private int DEPTH=3; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
