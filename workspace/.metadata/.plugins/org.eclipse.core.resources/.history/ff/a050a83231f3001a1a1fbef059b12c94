@@ -502,7 +502,7 @@ public class Deck {
 			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
 				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
 					i++; j++;
-					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					while (i<this.CurrentDeckOrder.size()){
 						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
 							i++; j++;
 							points = points+10;

@@ -452,25 +452,6 @@ public class Deck {
 			}
 		}
 		
-	private ArrayList<String> stringToArrayListDeck(String initialDeck){
-		//Initial Deck Building From String
-		ArrayList<String> CurrentDeckOrder = new ArrayList<String>(); 
-		StringBuilder sb = new StringBuilder();
-		for (int i=0; i<initialDeck.length(); i++){
-			if((initialDeck.charAt(i)==',')||(initialDeck.charAt(i)==']')){
-				String card = sb.toString();
-				CurrentDeckOrder.add(card);
-				sb = new StringBuilder();
-			}
-			else if((initialDeck.charAt(i)=='[')||(initialDeck.charAt(i)==' ')){}
-			else{
-				char character = initialDeck.charAt(i);
-				sb.append(character);
-			}			
-		}
-		return CurrentDeckOrder;
-	}
-	
 	public void printCurrentDeck(){
 		String currentCurrentDeckOrder=this.CurrentDeckOrder.toString();
 		System.out.println("Current Deck Order: "+currentCurrentDeckOrder);
@@ -502,7 +483,7 @@ public class Deck {
 			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
 				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
 					i++; j++;
-					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					while (i<this.CurrentDeckOrder.size()){
 						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
 							i++; j++;
 							points = points+10;
@@ -514,7 +495,7 @@ public class Deck {
 				}
 				else{j++;}
 			}
-			j=0;
+			i++; j=0;
 		}
 		return points;
 	}
@@ -529,13 +510,9 @@ public class Deck {
 
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
-		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 1s, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
-		System.out.println(Baraja.vectorDistance(finalDeck));
-		
-		/*Baraja.inPartialFaroCurrentDeck(23);
+		Baraja.inPartialFaroCurrentDeck(23);
 		Baraja.cutCurrentDeck(35);
-		Baraja.printCurrentDeck();*/
-		
+		Baraja.printCurrentDeck();
 		/*Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(26);

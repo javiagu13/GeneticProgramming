@@ -69,9 +69,7 @@ public class javiGP {
 		}
 	}
 	
-	private void crossOverIndividuals(ZuhaitzBitarra<String> firstIndividual, ZuhaitzBitarra<String> secondIndividual){
-		int firstTreeCutPos = randomIntBetween(0,firstIndividual.height()); //no se si empieza en 0 ni si termina en height igual es height -1 o algo asi
-		int secondTreeCutPos = randomIntBetween(0,secondIndividual.height());
+	private void crossOverIndividuals(int firstIndividual, int secondIndividual){
 		
 	}
 	
