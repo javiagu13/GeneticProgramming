@@ -497,7 +497,7 @@ public class Deck {
 			}
 			i++; j=0;
 		}
-		return points;
+		return 0;
 	}
 	
 	public ArrayList<String> getCurrentDeckOrder() {

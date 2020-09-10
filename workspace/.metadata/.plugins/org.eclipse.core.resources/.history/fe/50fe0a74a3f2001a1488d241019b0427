@@ -23,7 +23,7 @@ public class javiGP {
 	//SETTINGS
 	private int MIN=1; //Minimum number
 	private int MAX=52; //Minimum number
-	private int POPULATIONSIZE=10000;
+	private int POPULATIONSIZE=1000000;
 	private int DEPTH=2; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
@@ -150,30 +150,13 @@ public class javiGP {
 		}
 	}
 	
-	public void testIndividualWithDistanceVector(String deckInitialOrder){
-		Deck initialDeck = new Deck(deckInitialOrder);
-		Deck initialDeckForModifying = new Deck(deckInitialOrder);
-		Deck finalDeck = applyIndividualToDeck(population.get(0),initialDeckForModifying);
-		int result=initialDeck.vectorDistance(finalDeck.getCurrentDeckOrder());
-		System.out.println("initialDeck");
-		initialDeck.printCurrentDeck();
-		System.out.println("finalDeck");
-		finalDeck.printCurrentDeck();
-		
-		System.out.println(result);
-	}
-	
 	public static void main(String[] args) {
 		javiGP gp = new javiGP();
-		String initialDeckString = "[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
-		String finalDeckString = "[5h, 11c, 6h, 10c, 7h, 9c, 8h, 8c, 9h, 7c, 10h, 6c, 5c, 4c, 3c, 2c, 1c, 11h, 1s, 12h, 2s, 13h, 3s, 13d, 4s, 12d, 5s, 11d, 6s, 10d, 7s, 9d, 8s, 8d, 9s, 7d, 10s, 6d, 11s, 5d, 12s, 4d, 13s, 3d, 1h, 2d, 2h, 1d, 3h, 13c, 4h, 12c]";
-		Deck initialDeck = new Deck(initialDeckString);
-		Deck finalDeck = new Deck(finalDeckString);
-		
+		String initialDeck = "[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
+		String finalDeck = "[5h, 11c, 6h, 10c, 7h, 9c, 8h, 8c, 9h, 7c, 10h, 6c, 5c, 4c, 3c, 2c, 1c, 11h, 1s, 12h, 2s, 13h, 3s, 13d, 4s, 12d, 5s, 11d, 6s, 10d, 7s, 9d, 8s, 8d, 9s, 7d, 10s, 6d, 11s, 5d, 12s, 4d, 13s, 3d, 1h, 2d, 2h, 1d, 3h, 13c, 4h, 12c]";
 		
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		gp.testIndividualWithDistanceVector(initialDeckString);
-		//gp.applyPopulationToDeck(initialDeckString,finalDeckString);
+		gp.applyPopulationToDeck(initialDeck,finalDeck);
 	}
 }

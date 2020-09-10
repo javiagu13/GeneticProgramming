@@ -23,7 +23,7 @@ public class javiGP {
 	//SETTINGS
 	private int MIN=1; //Minimum number
 	private int MAX=52; //Minimum number
-	private int POPULATIONSIZE=10000;
+	private int POPULATIONSIZE=1000000;
 	private int DEPTH=2; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
@@ -152,8 +152,8 @@ public class javiGP {
 	
 	public void testIndividualWithDistanceVector(String deckInitialOrder){
 		Deck initialDeck = new Deck(deckInitialOrder);
-		Deck initialDeckForModifying = new Deck(deckInitialOrder);
-		Deck finalDeck = applyIndividualToDeck(population.get(0),initialDeckForModifying);
+		Deck finalDeck = applyIndividualToDeck(population.get(0),initialDeck);
+		Deck initialDeck = new Deck(deckInitialOrder);
 		int result=initialDeck.vectorDistance(finalDeck.getCurrentDeckOrder());
 		System.out.println("initialDeck");
 		initialDeck.printCurrentDeck();

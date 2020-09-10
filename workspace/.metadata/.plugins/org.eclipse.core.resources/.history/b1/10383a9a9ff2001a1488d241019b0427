@@ -478,7 +478,8 @@ public class Deck {
 	}
 	
 	public int vectorDistance(ArrayList finalDeck){
-		int i=0; int j=0; int points=0;
+		int i=0;
+		int j=0;
 		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
 			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
 				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
@@ -486,28 +487,17 @@ public class Deck {
 					while (i<this.CurrentDeckOrder.size()){
 						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
 							i++; j++;
-							points = points+10;
 						}
 						else{break;}
 					}
-					//j=0;
 					break;
 				}
-				else{j++;}
 			}
 			i++; j=0;
 		}
-		return points;
+		return 0;
 	}
 	
-	public ArrayList<String> getCurrentDeckOrder() {
-		return CurrentDeckOrder;
-	}
-
-	public void setCurrentDeckOrder(ArrayList<String> currentDeckOrder) {
-		CurrentDeckOrder = currentDeckOrder;
-	}
-
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		Baraja.inPartialFaroCurrentDeck(23);

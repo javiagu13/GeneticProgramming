@@ -490,24 +490,14 @@ public class Deck {
 						}
 						else{break;}
 					}
-					//j=0;
 					break;
 				}
-				else{j++;}
 			}
 			i++; j=0;
 		}
-		return points;
+		return 0;
 	}
 	
-	public ArrayList<String> getCurrentDeckOrder() {
-		return CurrentDeckOrder;
-	}
-
-	public void setCurrentDeckOrder(ArrayList<String> currentDeckOrder) {
-		CurrentDeckOrder = currentDeckOrder;
-	}
-
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		Baraja.inPartialFaroCurrentDeck(23);
