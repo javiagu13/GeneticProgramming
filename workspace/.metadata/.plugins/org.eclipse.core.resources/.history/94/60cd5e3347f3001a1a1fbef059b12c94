@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Stack;
 
 
 public class ZuhaitzBitarra<E> {
@@ -289,28 +288,6 @@ public class ZuhaitzBitarra<E> {
 	public void posordenInprimatu() {
 		if (!this.isEmpty())
 			this.root.posordenInprimatu();
-	}
-	
-	public void traversePreOrderWithoutRecursion() { //Hacer contador te paras en el nodo y lo devuelves :)
-	    Stack<Adabegi> stack = new Stack<Adabegi>();
-	    Adabegi current = root;
-	    stack.push(root);
-	    while(!stack.isEmpty()) {
-	        current = stack.pop();
-	        //visit(current.info);
-	        
-	        if(current.right != null) {
-	            stack.push(current.right);
-	        }    
-	        if(current.left != null) {
-	            stack.push(current.left);
-	        }
-	    }        
-	}
-	
-	public ZuhaitzBitarra<String> crossOverTrees(ZuhaitzBitarra<String> zuhaitz2){
-		zuhaitz2.
-		return;
 	}
 	
 	public String toString() {
