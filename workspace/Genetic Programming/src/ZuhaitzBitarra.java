@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -87,7 +88,7 @@ public class ZuhaitzBitarra<E> {
 			emaitza.append("] ");
 			return emaitza.toString();
 		}
-
+		
 		private void aurreordenInprimatu() {
 			System.out.print(getInfo() + " ");
 			if (this.hasLeft())
@@ -279,6 +280,7 @@ public class ZuhaitzBitarra<E> {
 	public void aurreordenInprimatu() {
 		if (!this.isEmpty())
 			this.root.aurreordenInprimatu();
+		System.out.println("");
 	}
 
 	public void inordenInprimatu() {
@@ -291,26 +293,150 @@ public class ZuhaitzBitarra<E> {
 			this.root.posordenInprimatu();
 	}
 	
-	public void traversePreOrderWithoutRecursion() { //Hacer contador te paras en el nodo y lo devuelves :)
+	private Adabegi<E> getNodePreOrder(int number) { //Hacer contador te paras en el nodo y lo devuelves :)
+		int counter=0;
 	    Stack<Adabegi> stack = new Stack<Adabegi>();
 	    Adabegi current = root;
 	    stack.push(root);
 	    while(!stack.isEmpty()) {
+	    	counter++;
 	        current = stack.pop();
+	        if(counter==number){
+	    		return current;
+	    	}
 	        //visit(current.info);
-	        
 	        if(current.right != null) {
 	            stack.push(current.right);
 	        }    
 	        if(current.left != null) {
 	            stack.push(current.left);
 	        }
-	    }        
+	    }  
+	    return current;
 	}
 	
-	public ZuhaitzBitarra<String> crossOverTrees(ZuhaitzBitarra<String> zuhaitz2){
-		zuhaitz2.
-		return;
+	private void replaceNodePreOrder(int number, Adabegi<String> nodo1) { //Hacer contador te paras en el nodo y lo devuelves :)
+		int counter=0;
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    if (number==1){
+	    	this.root=null;
+	    	this.root=(Adabegi<E>) nodo1;
+	    }
+	    //else????
+	    while(!stack.isEmpty()) {
+	    	counter++;
+	        current = stack.pop();
+	        if(counter==number-1){
+	        	if(current.right != null) {
+		            current.right = null;
+		            current.right = nodo1;
+		        }    
+	        	else if(current.left != null) {
+	        		current.left = null;
+		            current.left = nodo1;
+		        }
+	        	break;
+	    	}
+	        //visit(current.info);
+	        if(current.right != null) {
+	            stack.push(current.right);
+	        }    
+	        if(current.left != null) {
+	            stack.push(current.left);
+	        }
+	    }  
+	}
+	
+	public int randOddInt(int max) {
+		int odd = max+1;
+		Random random = new Random();
+		
+		while (odd==(max+1)){		//to avoid getting and odd number above range :)
+		odd = random.nextInt(max / 2) * 2 + 1;
+		}
+		return odd;
+	}
+	
+	public void crossOverTrees(ZuhaitzBitarra<String> zuhaitz2){//ZuhaitzBitarra<String>
+		/*System.out.println("FIRST TREES");
+		System.out.println("TREE 1");
+		this.aurreordenInprimatu();
+		System.out.println("");
+		System.out.println("TREE 2");
+		zuhaitz2.aurreordenInprimatu();
+		System.out.println("");*/
+		
+		//tree 1
+		int zuhaitz1Size = this.size();	//size of this tree
+		int crossoverPoint1 = randOddInt(zuhaitz1Size);
+		Adabegi<String> nodo1 = new Adabegi<String>(null);
+		nodo1 = (Adabegi<String>) this.getNodePreOrder(crossoverPoint1);
+		
+		//tree 2
+		int zuhaitz2Size = zuhaitz2.size();	//size of other tree
+		int crossoverPoint2 = randOddInt(zuhaitz2Size);
+		Adabegi<String> nodo2 = new Adabegi<String>(null);
+		nodo2 = zuhaitz2.getNodePreOrder(crossoverPoint2);
+		
+		this.replaceNodePreOrder(crossoverPoint1, nodo2);
+		zuhaitz2.replaceNodePreOrder(crossoverPoint2, nodo1);
+		
+		/*System.out.println("SECOND TREES");
+		System.out.println("TREE 1");
+		this.aurreordenInprimatu();
+		System.out.println("");
+		System.out.println("TREE 2");
+		zuhaitz2.aurreordenInprimatu();
+		System.out.println("");
+		
+		System.out.println(crossoverPoint1);
+		System.out.println(crossoverPoint2);*/
+	}
+	
+	public void mutation(String operationName,String number){ //it changes the node at position n with this one
+		int mutationPoint1 = randOddInt(this.size());
+		
+		int counter=0;
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    if (mutationPoint1==1){
+	    	current.info=operationName;
+	    	if(current.left != null) {
+	    		current.left.info=number;
+	    	}
+	    	else if(current.right != null) {
+	    		current.right.info=number;
+	    	}
+	    }
+	    else{
+		    while(!stack.isEmpty()) {
+		    	counter++;
+		        current = stack.pop();
+		        if(counter==mutationPoint1-1){
+		        	//System.out.println("imprimi current: "+current.info);
+		        	if(current.right != null) {
+			            current.right.info = operationName;
+			            current.right.right.info=number;
+			        }    
+		        	else if(current.left != null) {
+		        		current.left.info = operationName;
+			            current.left.left.info=number;
+			        }
+		        	break;
+		    	}
+		        //visit(current.info);
+		        if(current.right != null) {
+		            stack.push(current.right);
+		        }    
+		        if(current.left != null) {
+		            stack.push(current.left);
+		        }
+		    }  
+	    }
+		
 	}
 	
 	public String toString() {

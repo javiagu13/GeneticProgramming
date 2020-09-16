@@ -1,10 +1,37 @@
+import java.util.Collections;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.HashMap; // import the HashMap class
+
+
 
 
 
 
 public class javiGP {
+	
+	public class Tuple<X, Y> implements Cloneable  { 
+		  public final X x; 
+		  public final Y y; 
+		  public Object clone() throws CloneNotSupportedException { 
+			  return super.clone(); 
+			} 
+		  
+		  public Tuple(X x, Y y) { 
+		    this.x = x; 
+		    this.y = y; 
+		  } 
+		  
+		  public X getFirstElement(){
+			  return this.x;
+		  }
+		  
+		  public Y getSecondElement(){
+			  return this.y;
+		  }
+	}
+	
+	
 	private ArrayList<String> FinalDeckOrder = new ArrayList<String>(); 
 	/*
 	cutCurrentDeck(int N){									cut
@@ -21,15 +48,18 @@ public class javiGP {
 	*/
 	
 	//SETTINGS
-	private int MIN=1; //Minimum number
-	private int MAX=52; //Minimum number
-	private int POPULATIONSIZE=10000;
+	private int MIN=1; //Minimum number of card
+	private int MAX=52; //Maximum number of card
+	
+	private int POPULATIONSIZE=100; //Number of Population
+	private int CROSSOVERNUMBER=50; //Crossover Rate
+	private int MUTATIONUMBER=10; //Number of mutations 
 	private int DEPTH=2; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
 	
-	private ArrayList<ZuhaitzBitarra<String>> population=new ArrayList<ZuhaitzBitarra<String>>();
+	private ArrayList<Tuple<ZuhaitzBitarra<String>, Integer>> population=new ArrayList<>();
 	
 	private int randomIntBetween(int min, int max){
 		 	Random rand=new Random();
@@ -60,13 +90,18 @@ public class javiGP {
 		for(int i=0; i<this.numbers.length-1;i++){numbers[i]=Integer.toString(i+1);}
 	}
 	
-	private void buildPopulation(){
+	private void buildPopulation(String initialDeckString){
 		for (int i = 0; i<this.POPULATIONSIZE;i++){
+			
 			ZuhaitzBitarra Individual = createIndividual();
 			//System.out.println(Individual.toString());
 			//System.out.println("--------------------");
-			population.add(Individual);
+			int deckDistance=testIndividualWithDistanceVector(initialDeckString, Individual);
+			Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(Individual, deckDistance);
+			population.add(tuple);	//Hay que sacar el vector distance y añadirselo :)
 		}
+		
+		this.quickSortPopulation(0, this.POPULATIONSIZE-1);
 	}
 	
 	private void crossOverIndividuals(ZuhaitzBitarra<String> firstIndividual, ZuhaitzBitarra<String> secondIndividual){
@@ -98,6 +133,13 @@ public class javiGP {
 		}
 		Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN,this.MAX)));
 		return Individual;
+	}
+	
+	public void mutateDeck(ZuhaitzBitarra<String> tree){
+		 String randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
+		 randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
+	     String number=Integer.toString(randomIntBetween(this.MIN,this.MAX));
+	     tree.mutation(randomOperation,number);
 	}
 	
 	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){
@@ -141,10 +183,10 @@ public class javiGP {
 		return deck;
 	}
 	
-	public void applyPopulationToDeck(String deckInitialOrder, String deckFinalOrder){
+	/*public void applyPopulationToDeck(String deckInitialOrder, String deckFinalOrder){
 		for(int i=0; i<this.population.size();i++){
 			Deck deck = new Deck(deckInitialOrder);
-			Deck finaldeck = applyIndividualToDeck(population.get(i),deck);
+			Deck finaldeck = applyIndividualToDeck(population.get(i).getFirstElement(),deck);
 			//System.out.println(this.population.get(i).toString());
 			//finaldeck.printCurrentDeck();
 			if (finaldeck.currentEqualToFinalDeck(deckFinalOrder)){
@@ -154,32 +196,129 @@ public class javiGP {
 				break;
 			}
 		}
-	}
+	}*/
 	
-	public void testIndividualWithDistanceVector(String deckInitialOrder){
+	public int testIndividualWithDistanceVector(String deckInitialOrder,ZuhaitzBitarra<String> tree){
 		Deck initialDeck = new Deck(deckInitialOrder);
 		Deck initialDeckForModifying = new Deck(deckInitialOrder);
-		Deck finalDeck = applyIndividualToDeck(population.get(0),initialDeckForModifying);
+		Deck finalDeck = applyIndividualToDeck(tree,initialDeckForModifying);
 		int result=initialDeck.vectorDistance(finalDeck.getCurrentDeckOrder());
+		System.out.println("DISTANCE VECTOR------------");
 		System.out.println("initialDeck");
 		initialDeck.printCurrentDeck();
 		System.out.println("finalDeck");
 		finalDeck.printCurrentDeck();
 		
 		System.out.println(result);
+		return result;
 	}
 	
-	public static void main(String[] args) {
+	
+	//QUICKSORT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
+    /* The main function that implements QuickSort() 
+      arr[] --> Array to be sorted, 
+      low  --> Starting index, 
+      high  --> Ending index */
+    public void quickSortPopulation(int low, int high) 
+    { 
+        if (low < high) 
+        { 
+            /* pi is partitioning index, arr[pi] is  
+              now at right place */
+            int pi = partition(low, high); 
+  
+            // Recursively sort elements before 
+            // partition and after partition 
+            quickSortPopulation(low, pi-1); 
+            quickSortPopulation(pi+1, high); 
+        } 
+    } 
+    
+    private int partition(int low, int high) 
+    { 
+        int pivot = this.population.get(high).getSecondElement();  
+        int i = (low-1); // index of smaller element 
+        for (int j=low; j<high; j++) 
+        { 
+            // If current element is smaller than or 
+            // equal to pivot 
+            if (this.population.get(j).getSecondElement() > pivot) 
+            { 
+                i++; 
+  
+                // swap arr[i] and arr[j] 
+                Tuple temp = this.population.get(i); 
+                this.population.set(i, this.population.get(j));
+                this.population.set(j, temp); 
+            } 
+        } 
+  
+        // swap arr[i+1] and arr[high] (or pivot) 
+        Tuple temp = this.population.get(i+1); 
+        this.population.set(i+1, this.population.get(high)); 
+        this.population.set(high, temp); 
+  
+        return i+1; 
+    } 
+    
+    public void printPopulation(){
+    	for(int i=0; i<this.POPULATIONSIZE;i++){
+    		System.out.println("------"+i+"º TREE------");
+    		this.population.get(i).getFirstElement().aurreordenInprimatu();
+    		System.out.println("Distance: "+this.population.get(i).getSecondElement());
+    	}
+    	System.out.println("------END OF PRINTING POPULATION------");
+    	System.out.println(population.get(0).getFirstElement());
+    }
+    
+    public void evolvePopulation() throws CloneNotSupportedException{
+    	//5 steps:
+    	//1-we copy the population part that we are going to crossover (the CROSSOVERNUMBER of population)
+    	
+    	for(int i = 0; i<this.CROSSOVERNUMBER;i++){
+    		Tuple tuple = new Tuple(null, null);
+    		tuple=(Tuple)this.population.get(i).clone();
+    		this.population.add(tuple); ////////////////////////////OJOOOOOO LO MAS SEGURO ES QUE SOLO COPIE LA DIRECCION DEL OBJETO NO EL OBJETO
+    	}
+    	
+    	//2-we have to crossover trees randomly on the first CROSSOVERNUMBER positions (CROSSOVER/2 is because we are doing two trees at a time)
+    	
+    	for(int i = 0; i<this.CROSSOVERNUMBER/2;i++){
+    		int firstNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    		int secondNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    		this.population.get(firstNum).getFirstElement().crossOverTrees(this.population.get(secondNum).getFirstElement()); //crossover operation
+    		}
+    	
+    	//3-we have to mutate MUTATIONUMBER times on the CROSSOVERNUMBER part
+    	for(int i = 0; i<this.MUTATIONUMBER;i++){
+    		int randomNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    		this.mutateDeck(this.population.get(randomNum).getFirstElement());
+    		}
+    	
+    	//4-quicksort everything so that it gets back to normal
+    	this.quickSortPopulation(0, this.population.size()-1);
+    	
+    	//5-delete the last elements of the population (the last CROSSOVERNUMBERS)
+    	for (int i=this.population.size()-1; i>this.POPULATIONSIZE; i--)
+    		this.population.remove(i);
+    	
+    }
+    
+	public static void main(String[] args) throws CloneNotSupportedException {
 		javiGP gp = new javiGP();
 		String initialDeckString = "[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
-		String finalDeckString = "[5h, 11c, 6h, 10c, 7h, 9c, 8h, 8c, 9h, 7c, 10h, 6c, 5c, 4c, 3c, 2c, 1c, 11h, 1s, 12h, 2s, 13h, 3s, 13d, 4s, 12d, 5s, 11d, 6s, 10d, 7s, 9d, 8s, 8d, 9s, 7d, 10s, 6d, 11s, 5d, 12s, 4d, 13s, 3d, 1h, 2d, 2h, 1d, 3h, 13c, 4h, 12c]";
+		String desiredDeckString = "[1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c, 1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s]";
 		Deck initialDeck = new Deck(initialDeckString);
-		Deck finalDeck = new Deck(finalDeckString);
+		Deck finalDeck = new Deck(desiredDeckString);
 		
 		
 		gp.initializeNumbersArray();
-		gp.buildPopulation();
-		gp.testIndividualWithDistanceVector(initialDeckString);
-		//gp.applyPopulationToDeck(initialDeckString,finalDeckString);
+		gp.buildPopulation(initialDeckString);
+		gp.printPopulation();
+		gp.evolvePopulation();
+		gp.printPopulation();
+		gp.evolvePopulation();
+		gp.printPopulation();
+		
 	}
 }

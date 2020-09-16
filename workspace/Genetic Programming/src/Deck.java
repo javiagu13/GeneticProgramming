@@ -529,8 +529,15 @@ public class Deck {
 
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
-		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 1s, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
-		System.out.println(Baraja.vectorDistance(finalDeck));
+		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		Baraja.setCurrentDeckOrder(finalDeck);
+		Baraja.printCurrentDeck();
+		
+		Baraja.faceUpInPartialFaroCurrentDeck(32);
+		Baraja.cutCurrentDeck(52);
+		
+		Baraja.printCurrentDeck();
+		//System.out.println(Baraja.vectorDistance(finalDeck));
 		
 		/*Baraja.inPartialFaroCurrentDeck(23);
 		Baraja.cutCurrentDeck(35);
