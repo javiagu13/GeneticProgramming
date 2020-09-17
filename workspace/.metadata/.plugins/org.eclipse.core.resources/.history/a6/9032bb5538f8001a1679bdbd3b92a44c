@@ -539,7 +539,7 @@ public class Deck {
 		Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.pealCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(18);
-		Baraja.cutCurrentDeck(9);
+		Baraja.cutCurrentDeck(10);
 		
 		Baraja.printCurrentDeck();
 		//System.out.println(Baraja.vectorDistance(finalDeck));

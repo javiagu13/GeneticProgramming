@@ -56,7 +56,7 @@ public class javiGP {
 	private int POPULATIONSIZE=10000; //Number of Population
 	private int CROSSOVERNUMBER=5000; //Crossover Rate
 	private int MUTATIONUMBER=1000; //Number of mutations 
-	private int DEPTH=8; //DEPTH OF OPERATIONS!! tree size / 2
+	private int DEPTH=4; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
