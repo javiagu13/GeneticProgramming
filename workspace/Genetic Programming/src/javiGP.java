@@ -11,8 +11,8 @@ import java.util.HashMap; // import the HashMap class
 public class javiGP {
 	
 	public class Tuple<X, Y> implements Cloneable  { 
-		  public final X x; 
-		  public final Y y; 
+		  public X x; 
+		  public Y y; 
 		  public Object clone() throws CloneNotSupportedException { 
 			  return super.clone(); 
 			} 
@@ -29,9 +29,15 @@ public class javiGP {
 		  public Y getSecondElement(){
 			  return this.y;
 		  }
+		  
+		  public void setSecondElement(Y val){
+			  this.y=val;
+		  }
 	}
 	
 	private String initialDeckString = "[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
+	//private String desiredDeckString = "[1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c, 1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s]";
+	
 	private String desiredDeckString = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
 	
 	private ArrayList<String> FinalDeckOrder = new ArrayList<String>(); 
@@ -56,7 +62,7 @@ public class javiGP {
 	private int POPULATIONSIZE=10000; //Number of Population
 	private int CROSSOVERNUMBER=5000; //Crossover Rate
 	private int MUTATIONUMBER=1000; //Number of mutations 
-	private int DEPTH=8; //DEPTH OF OPERATIONS!! tree size / 2
+	private int DEPTH=4; //DEPTH OF OPERATIONS!! tree size / 2
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -267,8 +273,11 @@ public class javiGP {
     } 
     
     public void printPopulation(){
-    	for(int i=0; i<this.POPULATIONSIZE;i++){
+    	for(int i=0; i<this.population.size();i++){
     		System.out.println("------"+i+"º TREE------");
+    		Deck deck = new Deck(this.initialDeckString);
+    		Deck finaldeck = applyIndividualToDeck(population.get(i).getFirstElement(),deck);
+    		finaldeck.printCurrentDeck();
     		this.population.get(i).getFirstElement().aurreordenInprimatu();
     		System.out.println("Distance: "+this.population.get(i).getSecondElement());
     	}
@@ -294,8 +303,13 @@ public class javiGP {
     	//1-we copy the population part that we are going to crossover (the CROSSOVERNUMBER of population)
     	
     	for(int i = 0; i<this.CROSSOVERNUMBER;i++){
-    		Tuple tuple = new Tuple(null, null);
-    		tuple=(Tuple)this.population.get(i).clone();
+    		ZuhaitzBitarra<String> clonedTree = new ZuhaitzBitarra<String>(); 
+    		clonedTree.cloneTree(population.get(i).getFirstElement().getRoot());
+    		int points=population.get(i).getSecondElement();
+            // Cloning the set using clone() method 
+            
+    		Tuple tuple = new Tuple(clonedTree, points);
+    		
     		this.population.add(tuple); ////////////////////////////OJOOOOOO LO MAS SEGURO ES QUE SOLO COPIE LA DIRECCION DEL OBJETO NO EL OBJETO
     	}
     	
@@ -313,6 +327,14 @@ public class javiGP {
     		this.mutateDeck(this.population.get(randomNum).getFirstElement());
     		}
     	
+    	//Update puntuations
+    	for(int i =0; i<CROSSOVERNUMBER-1;i++){
+    		ZuhaitzBitarra<String> tree=this.population.get(i).getFirstElement();
+    		int deckDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, tree);
+    		Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(tree, deckDistance);
+    		this.population.set(i, tuple);		
+    	}
+    	
     	//4-quicksort everything so that it gets back to normal
     	this.quickSortPopulation(0, this.population.size()-1);
     	
@@ -328,13 +350,17 @@ public class javiGP {
 		
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		//gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.evolvePopulation();
+		gp.printPopulation();
+		
+		//gp.printPopulation(25);
+		
+		
 	
-	
-		
-		gp.printPopulation(25);
-		
-		
-		
 	}
 }

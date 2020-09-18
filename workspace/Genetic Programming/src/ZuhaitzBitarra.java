@@ -439,6 +439,18 @@ public class ZuhaitzBitarra<E> {
 		
 	}
 	
+	public Adabegi cloneTree(Adabegi root) {
+        if (root == null) {
+            return null;
+        }
+        
+        Adabegi cloneRoot = new Adabegi(root.info);
+        cloneRoot.left = cloneTree(root.left);
+        cloneRoot.right = cloneTree(root.right);
+        this.root=cloneRoot;
+        return cloneRoot;
+    }
+	
 	public String toString() {
 		if (this.isEmpty())
 			return "";
