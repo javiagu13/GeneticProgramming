@@ -158,7 +158,6 @@ public class javiGP {
 	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){
 		//System.out.println(Individual.inOrdenList().toString());
 		ArrayList<String> operationsList = Individual.inOrdenList();
-		System.out.println("");//////////////////////////
 		for(int i=0;i<operationsList.size()-1;i=i+2){
 	        switch(operationsList.get(i)) 
 		        { 
@@ -356,13 +355,13 @@ public class javiGP {
 		
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		for(int i=0;i<100;i++){
+		for(int i=0;i<25;i++){
 			System.out.println("----------"+i+". GENERATION...-----------");
 			System.out.println(gp.population.get(i).getFirstElement());
 			System.out.println("Points:"+gp.population.get(i).getSecondElement());
 			gp.evolvePopulation();}
 		
-		gp.printPopulation(5);
+		gp.printPopulation();
 		
 		//gp.printPopulation(25);
 		

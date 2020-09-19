@@ -166,7 +166,6 @@ public class ZuhaitzBitarra<E> {
 		}
 		
 		private ArrayList<E> inOrdenList(ArrayList<E> lista) {
-			System.out.print(this.info);
 			if (this.hasLeft()){
 				lista.add(this.left.info);
 				this.left.inOrdenList(lista);
