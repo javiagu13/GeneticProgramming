@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
 
@@ -115,12 +117,15 @@ public class ZuhaitzBitarra<E> {
 
 		private int size() {
 			int emaitza = 1;
+			//System.out.println("nodo: "+this.info);
 			if (this.hasLeft())
 				emaitza += this.getLeft().size();
 			if (this.hasRight())
 				emaitza += this.getRight().size();
 			return emaitza;
 		}
+		
+		
 
 		private int height() {
 			if (this.isLeaf())
@@ -166,7 +171,6 @@ public class ZuhaitzBitarra<E> {
 		}
 		
 		private ArrayList<E> inOrdenList(ArrayList<E> lista) {
-			System.out.print(this.info);
 			if (this.hasLeft()){
 				lista.add(this.left.info);
 				this.left.inOrdenList(lista);
@@ -252,6 +256,45 @@ public class ZuhaitzBitarra<E> {
 		return this.root.size();
 	}	
 
+	/*public int size(){
+		 if (root == null) 
+	            return 0; 
+	          
+	        // Using level order Traversal. 
+	        Queue<Adabegi> q = new LinkedList<Adabegi>(); 
+	        q.offer(root); 
+	          
+	        int count = 1;  
+	        while (!q.isEmpty()) 
+	        { 
+	            Adabegi tmp = q.poll(); 
+	      
+	            // when the queue is empty: 
+	            // the poll() method returns null. 
+	            if (tmp != null) 
+	            { 
+	                if (tmp.left != null) 
+	                { 
+	                    // Increment count 
+	                    count++; 
+	                      
+	                    // Enqueue left child  
+	                    q.offer(tmp.left); 
+	                } 
+	                if (tmp.right != null) 
+	                { 
+	                    // Increment count 
+	                    count++; 
+	                      
+	                    // Enqueue left child  
+	                    q.offer(tmp.right); 
+	                } 
+	            } 
+	        } 
+	          
+	        return count; 
+	}*/
+	
 	public int height() {
 		if (this.isEmpty())
 			return -1;
@@ -316,6 +359,30 @@ public class ZuhaitzBitarra<E> {
 	    return current;
 	}
 	
+	public void deleteAtTreeSize(int number) { //Hacer contador te paras en el nodo y lo devuelves :)
+		int counter=0;
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    while(!stack.isEmpty()&&counter<number) {
+	    	counter++;
+	        current = stack.pop();	        
+	        //visit(current.info);
+	        if(current.right != null) {
+	            stack.push(current.right);
+	        }    
+	        if(current.left != null) {
+	            stack.push(current.left);
+	        }
+	    }  
+	    if(current.right != null) {
+            current.right=null;
+        }    
+        if(current.left != null) {
+        	current.left=null;
+        }
+	}
+	
 	private void replaceNodePreOrder(int number, Adabegi<String> nodo1) { //Hacer contador te paras en el nodo y lo devuelves :)
 		int counter=0;
 	    Stack<Adabegi> stack = new Stack<Adabegi>();
@@ -360,7 +427,8 @@ public class ZuhaitzBitarra<E> {
 		return odd;
 	}
 	
-	public void crossOverTrees(ZuhaitzBitarra<String> zuhaitz2){//ZuhaitzBitarra<String>
+	public void crossOverTrees(ZuhaitzBitarra<String> zuhaitz2){
+		//ZuhaitzBitarra<String>
 		/*System.out.println("FIRST TREES");
 		System.out.println("TREE 1");
 		this.aurreordenInprimatu();
@@ -370,19 +438,30 @@ public class ZuhaitzBitarra<E> {
 		System.out.println("");*/
 		
 		//tree 1
+		//System.out.println("cro1");
 		int zuhaitz1Size = this.size();	//size of this tree
+		//System.out.println("cro2");
 		int crossoverPoint1 = randOddInt(zuhaitz1Size);
+		//System.out.println("cro3");
 		Adabegi<String> nodo1 = new Adabegi<String>(null);
+		//System.out.println("cro4");
 		nodo1 = (Adabegi<String>) this.getNodePreOrder(crossoverPoint1);
+		//System.out.println("cro5");
 		
 		//tree 2
 		int zuhaitz2Size = zuhaitz2.size();	//size of other tree
+		//System.out.println("cro6");
 		int crossoverPoint2 = randOddInt(zuhaitz2Size);
+		//System.out.println("cro7");
 		Adabegi<String> nodo2 = new Adabegi<String>(null);
+		//System.out.println("cro8");
 		nodo2 = zuhaitz2.getNodePreOrder(crossoverPoint2);
+		//System.out.println("cro9");
 		
 		this.replaceNodePreOrder(crossoverPoint1, nodo2);
+		//System.out.println("cro10");
 		zuhaitz2.replaceNodePreOrder(crossoverPoint2, nodo1);
+		//FSystem.out.println("cro11");
 		
 		/*System.out.println("SECOND TREES");
 		System.out.println("TREE 1");
@@ -425,6 +504,83 @@ public class ZuhaitzBitarra<E> {
 		        	else if(current.left != null) {
 		        		current.left.info = operationName;
 			            current.left.left.info=number;
+			        }
+		        	break;
+		    	}
+		        //visit(current.info);
+		        if(current.right != null) {
+		            stack.push(current.right);
+		        }    
+		        if(current.left != null) {
+		            stack.push(current.left);
+		        }
+		    }  
+	    }
+		
+	}
+	
+	public void mutationOfNumber(String number){ //it changes the node at position n with this one
+		int mutationPoint1 = randOddInt(this.size());
+		
+		int counter=0;
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    if (mutationPoint1==1){
+	    	if(current.left != null) {
+	    		current.left.info=number;
+	    	}
+	    	else if(current.right != null) {
+	    		current.right.info=number;
+	    	}
+	    }
+	    else{
+		    while(!stack.isEmpty()) {
+		    	counter++;
+		        current = stack.pop();
+		        if(counter==mutationPoint1-1){
+		        	//System.out.println("imprimi current: "+current.info);
+		        	if(current.right != null) {
+			            current.right.right.info=number;
+			        }    
+		        	else if(current.left != null) {
+			            current.left.left.info=number;
+			        }
+		        	break;
+		    	}
+		        //visit(current.info);
+		        if(current.right != null) {
+		            stack.push(current.right);
+		        }    
+		        if(current.left != null) {
+		            stack.push(current.left);
+		        }
+		    }  
+	    }
+		
+	}
+	
+	public void mutationOfOperation(String operationName){ //it changes the node at position n with this one
+		int mutationPoint1 = randOddInt(this.size());
+		
+		int counter=0;
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    if (mutationPoint1==1){
+	    	current.info=operationName;
+	    }
+	    else{
+		    while(!stack.isEmpty()) {
+		    	counter++;
+		        current = stack.pop();
+		        if(counter==mutationPoint1-1){
+		        	//System.out.println("imprimi current: "+current.info);
+		        	if(current.right != null) {
+			            current.right.info = operationName;
+			        }    
+		        	else if(current.left != null) {
+		        		current.left.info = operationName;
 			        }
 		        	break;
 		    	}

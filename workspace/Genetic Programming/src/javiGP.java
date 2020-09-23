@@ -38,12 +38,22 @@ public class javiGP {
 	private String initialDeckString = "[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
 	//private String desiredDeckString = "[1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c, 1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s]";
 	
-	//private String desiredDeckString = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
+	//Mnemonica
+	private String desiredDeckString = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
 	
 	//dos outfaro 26
 	//private String desiredDeckString="[1s, 1h, 13d, 13c, 2s, 2h, 12d, 12c, 3s, 3h, 11d, 11c, 4s, 4h, 10d, 10c, 5s, 5h, 9d, 9c, 6s, 6h, 8d, 8c, 7s, 7h, 7d, 7c, 8s, 8h, 6d, 6c, 9s, 9h, 5d, 5c, 10s, 10h, 4d, 4c, 11s, 11h, 3d, 3c, 12s, 12h, 2d, 2c, 13s, 13h, 1d, 1c]";
 	
-	private String desiredDeckString="[4c, 4d, 10h, 10s, 5c, 5d, 9h, 9s, 6c, 6d, 8h, 8s, 7c, 7d, 7h, 7s, 8c, 8d, 6h, 6s, 9c, 9d, 5h, 5s, 10c, 10d, 4h, 4s, 11c, 11d, 3h, 3s, 12c, 12d, 2h, 2s, 13c, 13d, 1h, 1s, 11s, 11h, 3d, 3c, 12s, 12h, 2d, 2c, 13s, 13h, 1d, 1c]";
+	//dos out faro 26 y pelar 40
+	//private String desiredDeckString="[4c, 4d, 10h, 10s, 5c, 5d, 9h, 9s, 6c, 6d, 8h, 8s, 7c, 7d, 7h, 7s, 8c, 8d, 6h, 6s, 9c, 9d, 5h, 5s, 10c, 10d, 4h, 4s, 11c, 11d, 3h, 3s, 12c, 12d, 2h, 2s, 13c, 13d, 1h, 1s, 11s, 11h, 3d, 3c, 12s, 12h, 2d, 2c, 13s, 13h, 1d, 1c]";
+	
+	//dos outfaro 25 pelar 40 slipcut ?
+	//private String desiredDeckString="[4d, 10h, 10s, 5c, 5d, 9h, 9s, 6c, 6d, 8h, 8s, 7c, 7d, 7h, 7s, 8c, 8d, 6h, 6s, 9c, 9d, 5h, 5s, 10c, 4c, 10d, 4h, 4s, 11c, 11d, 3h, 3s, 12c, 12d, 2h, 2s, 13c, 13d, 1h, 1s, 11s, 11h, 3d, 3c, 12s, 12h, 2d, 2c, 13s, 13h, 1d, 1c]";
+	
+	//
+	//private String desiredDeckString="[4c, 4h, 4d, 4s, 10h, 11c, 10s, 11d, 5c, 3h, 5d, 3s, 9h, 12c, 9s, 12d, 6c, 2h, 6d, 2s, 8h, 13c, 8s, 13d, 7c, 1h, 7d, 1s, 7h, 11s, 7s, 11h, 8c, 3d, 8d, 3c, 6h, 12s, 6s, 12h, 9c, 2d, 9d, 2c, 5h, 13s, 5s, 13h, 10c, 1d, 10d, 1c]";
+	//private String desiredDeckString="[4c, 7s, 4d, 8c, 10h, 8d, 10s, 6h, 5c, 6s, 5d, 9c, 12c, 9h, 12d, 9d, 2h, 9s, 2s, 5h, 13c, 6c, 13d, 5s, 1h, 6d, 1s, 10c, 11s, 8h, 11h, 10d, 3d, 8s, 3c, 4h, 12s, 7c, 12h, 4s, 2d, 7d, 2c, 11c, 13s, 7h, 13h, 11d, 1d, 3h, 1c, 3s]";
+
 	
 	private ArrayList<String> FinalDeckOrder = new ArrayList<String>(); 
 	/*
@@ -66,8 +76,13 @@ public class javiGP {
 	
 	private int POPULATIONSIZE=10000; //Number of Population
 	private int CROSSOVERNUMBER=5000; //Crossover Rate
-	private int MUTATIONUMBER=1000; //Number of mutations 
-	private int DEPTH=4; //DEPTH OF OPERATIONS!! tree size / 2
+	
+	private int MUTATION=2500; //Number of mutations (technique+number)
+	private int MUTATIONUMBER=1000; //Number of mutations (technique+number)
+	private int MUTATIONOPERATION=0; //Number of mutations (technique+number)
+	
+	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
+	private int LENGTHMAXOFTREE=20*2;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -150,15 +165,24 @@ public class javiGP {
 	
 	public void mutateDeck(ZuhaitzBitarra<String> tree){
 		 String randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
-		 randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
+		 //randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
 	     String number=Integer.toString(randomIntBetween(this.MIN,this.MAX));
 	     tree.mutation(randomOperation,number);
+	}
+	
+	public void mutateDeckNumber(ZuhaitzBitarra<String> tree){
+	     String number=Integer.toString(randomIntBetween(this.MIN,this.MAX));
+	     tree.mutationOfNumber(number);
+	}
+	
+	public void mutateDeckOperation(ZuhaitzBitarra<String> tree){
+		 String randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
+	     tree.mutationOfOperation(randomOperation);
 	}
 	
 	public Deck applyIndividualToDeck(ZuhaitzBitarra<String> Individual, Deck deck){
 		//System.out.println(Individual.inOrdenList().toString());
 		ArrayList<String> operationsList = Individual.inOrdenList();
-		System.out.println("");//////////////////////////
 		for(int i=0;i<operationsList.size()-1;i=i+2){
 	        switch(operationsList.get(i)) 
 		        { 
@@ -300,14 +324,13 @@ public class javiGP {
     		this.population.get(i).getFirstElement().aurreordenInprimatu();
     		System.out.println("Distance: "+this.population.get(i).getSecondElement());
     	}
-    	System.out.println("------END OF PRINTING POPULATION------");
+    	System.out.println("------END OF TRAINING POPULATION!!!------");
     	System.out.println(population.get(0).getFirstElement());
     }
     
     public void evolvePopulation() throws CloneNotSupportedException{
     	//5 steps:
     	//1-we copy the population part that we are going to crossover (the CROSSOVERNUMBER of population)
-    	
     	for(int i = 0; i<this.CROSSOVERNUMBER;i++){
     		ZuhaitzBitarra<String> clonedTree = new ZuhaitzBitarra<String>(); 
     		clonedTree.cloneTree(population.get(i).getFirstElement().getRoot());
@@ -316,23 +339,40 @@ public class javiGP {
             
     		Tuple tuple = new Tuple(clonedTree, points);
     		
-    		this.population.add(tuple); ////////////////////////////OJOOOOOO LO MAS SEGURO ES QUE SOLO COPIE LA DIRECCION DEL OBJETO NO EL OBJETO
+    		this.population.add(tuple);
     	}
-    	
+
     	//2-we have to crossover trees randomly on the first CROSSOVERNUMBER positions (CROSSOVER/2 is because we are doing two trees at a time)
-    	
     	for(int i = 0; i<this.CROSSOVERNUMBER/2;i++){
     		int firstNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
     		int secondNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
-    		this.population.get(firstNum).getFirstElement().crossOverTrees(this.population.get(secondNum).getFirstElement()); //crossover operation
+    		//avoiding same number
+    		if(firstNum==secondNum){
+    			while (firstNum==secondNum){
+    				secondNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    			}
     		}
-    	
+    		this.population.get(firstNum).getFirstElement().crossOverTrees(this.population.get(secondNum).getFirstElement()); //crossover operation
+    		if(this.population.get(firstNum).getFirstElement().size()>this.LENGTHMAXOFTREE){this.population.get(firstNum).getFirstElement().deleteAtTreeSize(this.LENGTHMAXOFTREE);}
+    		if(this.population.get(secondNum).getFirstElement().size()>this.LENGTHMAXOFTREE){this.population.get(secondNum).getFirstElement().deleteAtTreeSize(this.LENGTHMAXOFTREE);}
+
+    		
+    	}
     	//3-we have to mutate MUTATIONUMBER times on the CROSSOVERNUMBER part
-    	for(int i = 0; i<this.MUTATIONUMBER;i++){
+    	for(int i = 0; i<this.MUTATION;i++){
     		int randomNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
     		this.mutateDeck(this.population.get(randomNum).getFirstElement());
     		}
     	
+    	for(int i = 0; i<this.MUTATIONUMBER;i++){
+    		int randomNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    		this.mutateDeckNumber(this.population.get(randomNum).getFirstElement());
+    		}
+    	
+    	for(int i = 0; i<this.MUTATIONOPERATION;i++){
+    		int randomNum=this.randomIntBetween(0, CROSSOVERNUMBER-1);
+    		this.mutateDeckOperation(this.population.get(randomNum).getFirstElement());
+    		}
     	//Update puntuations
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
     		ZuhaitzBitarra<String> tree=this.population.get(i).getFirstElement();
@@ -340,10 +380,8 @@ public class javiGP {
     		Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(tree, deckDistance);
     		this.population.set(i, tuple);		
     	}
-    	
     	//4-quicksort everything so that it gets back to normal
     	this.quickSortPopulation(0, this.population.size()-1);
-    	
     	//5-delete the last elements of the population (the last CROSSOVERNUMBERS)
     	for (int i=this.population.size()-1; i>this.POPULATIONSIZE; i--)
     		this.population.remove(i);
@@ -356,13 +394,19 @@ public class javiGP {
 		
 		gp.initializeNumbersArray();
 		gp.buildPopulation();
-		for(int i=0;i<100;i++){
-			System.out.println("----------"+i+". GENERATION...-----------");
-			System.out.println(gp.population.get(i).getFirstElement());
-			System.out.println("Points:"+gp.population.get(i).getSecondElement());
-			gp.evolvePopulation();}
+		int i = 0;
+		int iterations=150;
 		
-		gp.printPopulation(5);
+		//while(gp.population.get(0).getSecondElement()<510&&i<iterations){
+		while(gp.population.get(0).getSecondElement()<510){
+			System.out.println("----------"+i+". GENERATION...-----------");
+			System.out.println(gp.population.get(0).getFirstElement());
+			System.out.println("Points:"+gp.population.get(0).getSecondElement());
+			gp.evolvePopulation();
+			i++;}
+
+		
+		gp.printPopulation(10);
 		
 		//gp.printPopulation(25);
 		

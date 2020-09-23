@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="slipcutup7slipcut20" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="slipcutup7slipcut20"/>
+			<item value="slipcutup7slipcut20slipcutup7slipcut20slipcutup7"/>
+			<item value="inorden"/>
 			<item value="shit"/>
 			<item value="deck"/>
 			<item value="build"/>
 			<item value="500"/>
 			<item value="cut 18"/>
-			<item value="testindividual"/>
-			<item value="createind"/>
-			<item value="buildpop"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CurrentDeckOrder"/>
