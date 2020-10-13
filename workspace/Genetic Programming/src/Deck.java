@@ -473,7 +473,7 @@ public class Deck {
 	
 	public void printCurrentDeck(){
 		String currentCurrentDeckOrder=this.CurrentDeckOrder.toString();
-		System.out.println("Current Deck Order: "+currentCurrentDeckOrder);
+		System.out.println("String Deck= \""+currentCurrentDeckOrder+"\";");
 	}
 	
 	public void printBackupDeck(){
@@ -519,6 +519,17 @@ public class Deck {
 		return points;
 	}
 	
+	public int hammingDistance(ArrayList finalDeck){
+		int points=0;
+		for(int i=0;i<this.CurrentDeckOrder.size();i++){
+			if(this.CurrentDeckOrder.get(i).equals(finalDeck.get(i))){
+				points=points+10;
+			}
+		}
+		return points;
+	}
+	
+	
 	public ArrayList<String> getCurrentDeckOrder() {
 		return CurrentDeckOrder;
 	}
@@ -530,8 +541,20 @@ public class Deck {
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		ArrayList<String> finalDeck2 = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		
 		Baraja.setCurrentDeckOrder(finalDeck);
-		Baraja.printCurrentDeck();
+		Baraja.pealCurrentDeck(20);
+		System.out.println(Baraja.hammingDistance(finalDeck2));
+		
+		//n=8
+		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24
+		
+		//n=16
+		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24 cut 9 cut 23 cut 8 cut 22 cut 7 cut 21 cut 6 cut 20
+		
+		//n=32
+		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24 cut 9 cut 23 cut 8 cut 22 cut 7 cut 21 cut 6 cut 20 cut 2 cut 4 cut 8 cut 10 cut 11 cut 12 cut 2 cut 33 cut 20 cut 21 cut 5 cut 6 cut 7 cut 8 cut 9 cut 10
 		
 		/*Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(26);
@@ -540,14 +563,15 @@ public class Deck {
 		Baraja.pealCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(18);
 		Baraja.cutCurrentDeck(9);*/
-		Baraja.outPartialFaroCurrentDeck(26);
+		
+		/*Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.outPartialFaroCurrentDeck(26);
 		Baraja.pealCurrentDeck(40);
 		Baraja.outPartialFaroCurrentDeck(15);
 		Baraja.outPartialFaroCurrentDeck(5);
-		Baraja.faceUpInPartialFaroCurrentDeck(20);
+		Baraja.faceUpInPartialFaroCurrentDeck(20);*/
 		//Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.printCurrentDeck();
+		
 		//System.out.println(Baraja.vectorDistance(finalDeck));
 		
 		/*Baraja.inPartialFaroCurrentDeck(23);

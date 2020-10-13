@@ -1,0 +1,90 @@
+		System.out.println("//faceUpOutPartialFaroCurrentDeck");
+		System.out.println("//n=2");
+		System.out.print("//");
+		Baraja.faceUpOutPartialFaroCurrentDeck(13);
+		Baraja.faceUpOutPartialFaroCurrentDeck(26);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=4");
+		System.out.print("//");
+		Baraja.faceUpOutPartialFaroCurrentDeck(13);
+		Baraja.faceUpOutPartialFaroCurrentDeck(26);		
+		Baraja.faceUpOutPartialFaroCurrentDeck(14);
+		Baraja.faceUpOutPartialFaroCurrentDeck(27);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=8");
+		System.out.print("//");
+		Baraja.faceUpOutPartialFaroCurrentDeck(13);
+		Baraja.faceUpOutPartialFaroCurrentDeck(26);		
+		Baraja.faceUpOutPartialFaroCurrentDeck(14);
+		Baraja.faceUpOutPartialFaroCurrentDeck(27);
+		Baraja.faceUpOutPartialFaroCurrentDeck(11);
+		Baraja.faceUpOutPartialFaroCurrentDeck(25);
+		Baraja.faceUpOutPartialFaroCurrentDeck(10);
+		Baraja.faceUpOutPartialFaroCurrentDeck(24);		
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=16");
+		System.out.print("//");
+		Baraja.faceUpOutPartialFaroCurrentDeck(13);
+		Baraja.faceUpOutPartialFaroCurrentDeck(26);		
+		Baraja.faceUpOutPartialFaroCurrentDeck(14);
+		Baraja.faceUpOutPartialFaroCurrentDeck(27);
+		Baraja.faceUpOutPartialFaroCurrentDeck(11);
+		Baraja.faceUpOutPartialFaroCurrentDeck(25);
+		Baraja.faceUpOutPartialFaroCurrentDeck(10);
+		Baraja.faceUpOutPartialFaroCurrentDeck(24);
+		
+		Baraja.faceUpOutPartialFaroCurrentDeck(9);
+		Baraja.faceUpOutPartialFaroCurrentDeck(23);
+		Baraja.faceUpOutPartialFaroCurrentDeck(8);
+		Baraja.faceUpOutPartialFaroCurrentDeck(22);
+		Baraja.faceUpOutPartialFaroCurrentDeck(7);
+		Baraja.faceUpOutPartialFaroCurrentDeck(21);
+		Baraja.faceUpOutPartialFaroCurrentDeck(6);
+		Baraja.faceUpOutPartialFaroCurrentDeck(20);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=32");
+		System.out.print("//");
+		Baraja.faceUpOutPartialFaroCurrentDeck(13);
+		Baraja.faceUpOutPartialFaroCurrentDeck(26);		
+		Baraja.faceUpOutPartialFaroCurrentDeck(14);
+		Baraja.faceUpOutPartialFaroCurrentDeck(27);
+		Baraja.faceUpOutPartialFaroCurrentDeck(11);
+		Baraja.faceUpOutPartialFaroCurrentDeck(25);
+		Baraja.faceUpOutPartialFaroCurrentDeck(10);
+		Baraja.faceUpOutPartialFaroCurrentDeck(24);
+		
+		Baraja.faceUpOutPartialFaroCurrentDeck(9);
+		Baraja.faceUpOutPartialFaroCurrentDeck(23);
+		Baraja.faceUpOutPartialFaroCurrentDeck(8);
+		Baraja.faceUpOutPartialFaroCurrentDeck(22);
+		Baraja.faceUpOutPartialFaroCurrentDeck(7);
+		Baraja.faceUpOutPartialFaroCurrentDeck(21);
+		Baraja.faceUpOutPartialFaroCurrentDeck(6);
+		Baraja.faceUpOutPartialFaroCurrentDeck(20);
+		
+		Baraja.faceUpOutPartialFaroCurrentDeck(2);
+		Baraja.faceUpOutPartialFaroCurrentDeck(4);
+		Baraja.faceUpOutPartialFaroCurrentDeck(8);
+		Baraja.faceUpOutPartialFaroCurrentDeck(10);
+		Baraja.faceUpOutPartialFaroCurrentDeck(11);
+		Baraja.faceUpOutPartialFaroCurrentDeck(12);
+		Baraja.faceUpOutPartialFaroCurrentDeck(2);
+		Baraja.faceUpOutPartialFaroCurrentDeck(33);
+		
+		Baraja.faceUpOutPartialFaroCurrentDeck(20);
+		Baraja.faceUpOutPartialFaroCurrentDeck(21);
+		Baraja.faceUpOutPartialFaroCurrentDeck(5);
+		Baraja.faceUpOutPartialFaroCurrentDeck(6);
+		Baraja.faceUpOutPartialFaroCurrentDeck(7);
+		Baraja.faceUpOutPartialFaroCurrentDeck(8);
+		Baraja.faceUpOutPartialFaroCurrentDeck(9);
+		Baraja.faceUpOutPartialFaroCurrentDeck(10);
+		Baraja.printCurrentDeck();
