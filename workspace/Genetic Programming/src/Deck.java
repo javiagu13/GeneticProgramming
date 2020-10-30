@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Deck {
 	private ArrayList<String> CurrentDeckBackup = new ArrayList<String>(); 
@@ -526,9 +527,38 @@ public class Deck {
 				points=points+10;
 			}
 		}
-		return points;
+		return points-10;
 	}
 	
+	public int MixedDistanceSequenceHamming(ArrayList finalDeck){
+		int i=0; int j=0; int pointsSequence=0;
+		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
+			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+					i++; j++;
+					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+							i++; j++;
+							pointsSequence = pointsSequence+5;
+						}
+						else{break;}
+					}
+					//j=0;
+					break;
+				}
+				else{j++;}
+			}
+			j=0;
+		}
+		
+		int pointsHamming=0;
+		for(int k=0;k<this.CurrentDeckOrder.size();k++){
+			if(this.CurrentDeckOrder.get(k).equals(finalDeck.get(k))){
+				pointsHamming=pointsHamming+5;
+			}
+		}
+		return pointsSequence+pointsHamming-5;
+	}
 	
 	public ArrayList<String> getCurrentDeckOrder() {
 		return CurrentDeckOrder;
@@ -537,54 +567,576 @@ public class Deck {
 	public void setCurrentDeckOrder(ArrayList<String> currentDeckOrder) {
 		CurrentDeckOrder = currentDeckOrder;
 	}
-
+	
+	private int randomIntBetween(int min, int max){
+	 	Random rand=new Random();
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    return randomNum;
+	}
+	
+	public void singleTechPrintings(){
+		int counter=1;
+		String numString=""; 
+		
+		//CUT
+		System.out.println("//String technique = \"CUT\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//PEAL
+		System.out.println("//String technique = \"PEAL\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString="";
+		
+		//PEALUP
+		System.out.println("//String technique = \"PEALUP\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(1,52);
+				this.faceUpPealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//SLIPCUT
+		System.out.println("//String technique = \"SLIPCUT\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//SLIPCUTUP
+		System.out.println("//String technique = \"SLIPCUTUP\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(1,52);
+				this.faceUpSlipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INFARO
+		System.out.println("//String technique = \"INFARO\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INFAROUP
+		System.out.println("//String technique = \"INFAROUP\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(10,42);
+				this.faceUpInPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		
+		//OUTFARO
+		System.out.println("//String technique = \"OUTFARO\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(10,42);
+				this.outPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//OUTFAROUP
+		System.out.println("//String technique = \"OUTFAROUP\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i;j++){
+				int num = randomIntBetween(10,42);
+				this.faceUpOutPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();		
+	}
+	
+	
+	public void doubleTechPrintings(){
+		int counter=1;
+		String numString=""; 
+		
+		//CUTTING-INSERTION
+		System.out.println("//String technique = \"CUTTING-INSERTION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 	
+		
+		//CUTTING-INTERCALATION
+		System.out.println("//String technique = \"CUTTING-INTERCALATION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 	
+		
+		//CUTTING-INVERSION
+		System.out.println("//String technique = \"CUTTING-INVERSION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 	
+		
+		
+		//INSERTION-CUTTING
+		System.out.println("//String technique = \"INSERTION-CUTTING\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		
+		
+		//INSERTION-INTERCALATION
+		System.out.println("//String technique = \"INSERTION-INTERCALATION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		
+		//INSERTION-INVERSION
+		System.out.println("//String technique = \"INSERTION-INVERSION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		
+		//INTERCALATION-CUTTING
+		System.out.println("//String technique = \"INTERCALATION-CUTTING\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INTERCALATION-INSERTION
+		System.out.println("//String technique = \"INTERCALATION-CUTTING\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INTERCALATION-INVERSION
+		System.out.println("//String technique = \"INTERCALATION-INVERSION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INVERSION-CUTTING
+		System.out.println("//String technique = \"INVERSION-CUTTING\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.cutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INVERSION-INSERTION
+		System.out.println("//String technique = \"INVERSION-INSERTION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(1,52);
+				this.slipCutCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		//INVERSION-INTERCALATION
+		System.out.println("//String technique = \"INVERSION-INTERCALATION\";");
+		for(int i=2; i<=32; i=i*2){
+			for(int j=1;j<=i/2;j++){
+				//FIRST TECH
+				int num = randomIntBetween(1,52);
+				this.pealCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+				//SECOND TECH
+				num = randomIntBetween(10,42);
+				this.inPartialFaroCurrentDeck(num);
+				numString=numString+" "+Integer.toString(num);
+			}
+			System.out.println("//N="+i+"  ("+numString+" )");
+			System.out.print("//String Deck"+counter+" = \"");
+			System.out.print(this.CurrentDeckOrder.toString());
+			System.out.println("\";");
+			counter++;
+			numString=""; 
+			this.doDeckToBackupState();
+		}
+		this.doDeckToBackupState();
+		System.out.println("");
+		System.out.println("");
+		counter=1;
+		numString=""; 
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		Deck Baraja = new Deck();
 		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
 		ArrayList<String> finalDeck2 = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
-		
 		Baraja.setCurrentDeckOrder(finalDeck);
-		Baraja.pealCurrentDeck(20);
-		System.out.println(Baraja.hammingDistance(finalDeck2));
+		Baraja.doubleTechPrintings();
+	
+		/*
+		this.cutCurrentDeck(N);
+		this.pealCurrentDeck(N);
+		this.slipCutCurrentDeck(N);
+		this.faceUpSlipCutCurrentDeck(N);
+		this.faceUpPealCurrentDeck(N);
+		this.faceUpInPartialFaroCurrentDeck(N);
+		this.outPartialFaroCurrentDeck(N);
+		this.faceUpOutPartialFaroCurrentDeck(N);
 		
-		//n=8
-		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24
 		
-		//n=16
-		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24 cut 9 cut 23 cut 8 cut 22 cut 7 cut 21 cut 6 cut 20
-		
-		//n=32
-		//cut 13 cut 26 cut 12 cut 27 cut 11 cut 25 cut 10 cut 24 cut 9 cut 23 cut 8 cut 22 cut 7 cut 21 cut 6 cut 20 cut 2 cut 4 cut 8 cut 10 cut 11 cut 12 cut 2 cut 33 cut 20 cut 21 cut 5 cut 6 cut 7 cut 8 cut 9 cut 10
-		
-		/*Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.pealCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(18);
-		Baraja.cutCurrentDeck(9);*/
-		
-		/*Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.pealCurrentDeck(40);
-		Baraja.outPartialFaroCurrentDeck(15);
-		Baraja.outPartialFaroCurrentDeck(5);
-		Baraja.faceUpInPartialFaroCurrentDeck(20);*/
-		//Baraja.outPartialFaroCurrentDeck(26);
-		
-		//System.out.println(Baraja.vectorDistance(finalDeck));
-		
-		/*Baraja.inPartialFaroCurrentDeck(23);
-		Baraja.cutCurrentDeck(35);
-		Baraja.printCurrentDeck();*/
-		
-		/*Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(26);
-		Baraja.pealCurrentDeck(26);
-		Baraja.outPartialFaroCurrentDeck(18);
-		Baraja.cutCurrentDeck(9);
-		Baraja.printCurrentDeck();*/
-		}
+		cutCurrentDeck
+		pealCurrentDeck		
+		slipCutCurrentDeck
+		faceUpSlipCutCurrentDeck
+		faceUpPealCurrentDeck
+		inPartialFaroCurrentDeck	
+		faceUpInPartialFaroCurrentDeck
+		outPartialFaroCurrentDeck
+		faceUpOutPartialFaroCurrentDeck	*/
+	}
 }
