@@ -68,7 +68,7 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String DISTANCE="SEQUENCE-HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -759,30 +759,30 @@ public class javiGP {
 		//String Deck5 = "[1s, 8h, 2d, 2s, 3d, 11d, 9s, 9h, 3c, 10c, 4h, 12d, 10s, 10d, 5d, 5h, 12c, 4c, 7h, 8c, 4s, 2c, 11c, 8d, 9d, 13c, 13s, 6s, 11h, 1d, 5s, 12s, 6c, 13d, 5c, 1c, 7d, 9c, 1h, 3h, 13h, 6d, 8s, 12h, 10h, 6h, 4d, 7s, 2h, 11s, 7c, 3s]";
 
 
-		//String technique = "INTERCALATION-CUTTING";
-		//N=2  ( 32 33 )
-		//String Deck1 = "[1s, 6d, 2s, 5d, 3s, 4d, 4s, 3d, 5s, 2d, 6s, 1d, 7s, 13c, 8s, 12c, 9s, 11c, 10s, 10c, 11s, 9c, 12s, 8c, 13s, 7c, 1h, 6c, 2h, 5c, 3h, 4c, 7d, 4h, 3c, 5h, 2c, 6h, 1c, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d]";
-		//N=4  ( 18 17 28 7 )
-		//String Deck2 = "[1s, 2h, 7h, 6d, 2s, 3h, 7d, 8h, 5d, 3s, 4h, 9h, 4d, 4s, 5h, 10h, 3d, 5s, 2d, 11h, 1d, 6s, 13c, 12h, 12c, 7s, 11c, 13h, 10c, 8s, 9c, 13d, 8c, 6h, 7c, 9s, 6c, 12d, 5c, 10s, 4c, 11d, 3c, 11s, 2c, 10d, 1c, 12s, 9d, 13s, 8d, 1h]";
-		//N=8  ( 40 45 24 23 26 48 18 24 )
-		//String Deck3 = "[1s, 8d, 5c, 9c, 2h, 10s, 12d, 7h, 11c, 7d, 8s, 4s, 3h, 2c, 11d, 8h, 2s, 12c, 4c, 8c, 4h, 11s, 10d, 6h, 9h, 10c, 6d, 9s, 5s, 5h, 1c, 9d, 10h, 3s, 5d, 3c, 7c, 12s, 11h, 4d, 6s, 13s, 12h, 3d, 1h, 2d, 6c, 13d, 1d, 13h, 13c, 7s]";
-		//N=16  ( 31 18 11 14 30 45 21 11 21 46 40 27 36 52 21 41 )
-		//String Deck4 = "[11h, 1c, 1s, 9c, 3d, 4d, 6s, 9h, 1d, 9d, 10s, 13s, 7h, 5h, 10c, 6d, 12c, 5d, 8d, 8c, 10d, 7s, 6c, 1h, 4c, 5s, 3c, 7c, 9s, 4s, 12s, 2h, 12h, 6h, 3h, 5c, 11s, 12d, 8s, 10h, 13d, 2s, 13h, 13c, 7d, 11c, 2d, 2c, 8h, 11d, 4h, 3s]";
-		//N=32  ( 42 21 29 43 39 14 29 14 38 47 33 32 31 25 23 33 16 49 13 30 26 36 22 9 25 5 32 29 13 22 13 7 )
-		//String Deck5 = "[1s, 11h, 5c, 12h, 7c, 3h, 7s, 9d, 11s, 7h, 6c, 2s, 7d, 6d, 6h, 10h, 9h, 4c, 13d, 13c, 11d, 3c, 12c, 6s, 5d, 11c, 4d, 3d, 8h, 2d, 10c, 1c, 9c, 3s, 1d, 4s, 13h, 8s, 8d, 12s, 10d, 4h, 5h, 1h, 5s, 13s, 12d, 10s, 8c, 9s, 2h, 2c]";
+		//String technique = "INTERCALATION-INSERTION";
+		//N=2  ( 24 32 )
+		//String Deck1 = "[1s, 13h, 2s, 13d, 3s, 12d, 4s, 11d, 5s, 10d, 6s, 9d, 7s, 8d, 8s, 7d, 9s, 6d, 10s, 5d, 11s, 4d, 12s, 3d, 13s, 2d, 1h, 1d, 2h, 13c, 3h, 12h, 12c, 4h, 11c, 5h, 10c, 6h, 9c, 7h, 8c, 8h, 7c, 9h, 6c, 10h, 5c, 11h, 4c, 3c, 2c, 1c]";
+		//N=4  ( 15 8 13 9 )
+		//String Deck2 = "[1s, 10h, 4h, 8s, 2s, 11h, 5h, 9s, 7s, 3s, 12h, 6h, 10s, 4s, 13h, 3h, 11s, 7h, 13d, 5s, 12s, 8h, 12d, 6s, 13s, 9h, 11d, 1h, 10d, 2h, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]";
+		//N=8  ( 15 52 29 46 27 42 13 27 )
+		//String Deck3 = "[3h, 6d, 10h, 5c, 9d, 5h, 8c, 12h, 1s, 5d, 8s, 4c, 8d, 3s, 7c, 10s, 4h, 4d, 11h, 3c, 7d, 6h, 6c, 13h, 2s, 3d, 9s, 2c, 4s, 11s, 2d, 1c, 7h, 13d, 1d, 2h, 5s, 12s, 13c, 12d, 8h, 9c, 13s, 12c, 11d, 6s, 1h, 11c, 10d, 9h, 10c, 7s]";
+		//N=16  ( 12 10 26 15 42 33 18 5 19 16 24 25 22 9 40 24 )
+		//String Deck4 = "[1s, 12d, 7s, 13d, 4h, 2s, 1c, 8c, 13s, 6s, 4s, 9h, 1d, 11h, 4d, 7c, 2h, 10s, 3h, 6c, 2d, 10h, 11d, 9s, 12c, 10d, 4c, 3s, 7h, 11s, 12s, 5d, 11c, 3d, 12h, 6h, 8s, 7d, 6d, 3c, 10c, 2c, 5c, 13h, 8h, 8d, 1h, 5s, 9c, 5h, 9d, 13c]";
+		//N=32  ( 24 17 31 43 15 37 32 19 26 25 10 38 20 15 25 2 30 18 34 3 31 33 23 12 28 41 36 25 40 15 14 48 )
+		//String Deck5 = "[1s, 3s, 6c, 4c, 13s, 10d, 7h, 8h, 3h, 13d, 11c, 12s, 1d, 4s, 5c, 11s, 12h, 6s, 7d, 5h, 8d, 3c, 9c, 5s, 11h, 13c, 9h, 9s, 6h, 2s, 12d, 10s, 9d, 12c, 7s, 11d, 2d, 6d, 5d, 4h, 8c, 4d, 8s, 13h, 10h, 2h, 1h, 7c, 10c, 3d, 2c, 1c]";
 
 
-		//String technique = "INTERCALATION-INVERSION";
+		String technique = "INTERCALATION-INVERSION";
 		//N=2  ( 37 7 )
-		//String Deck1 = "[12c, 3s, 13c, 2s, 1d, 1s, 2d, 4s, 11c, 5s, 10c, 6s, 9c, 7s, 8c, 8s, 7c, 9s, 6c, 10s, 5c, 11s, 4c, 12s, 3c, 13s, 2c, 1h, 1c, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d]";
+		String Deck1 = "[12c, 3s, 13c, 2s, 1d, 1s, 2d, 4s, 11c, 5s, 10c, 6s, 9c, 7s, 8c, 8s, 7c, 9s, 6c, 10s, 5c, 11s, 4c, 12s, 3c, 13s, 2c, 1h, 1c, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d]";
 		//N=4  ( 19 8 37 31 )
-		//String Deck2 = "[8s, 13d, 1c, 7s, 2c, 13h, 3c, 6s, 4c, 12h, 5c, 5s, 6c, 11h, 7c, 7h, 8c, 1s, 9c, 8h, 10c, 2s, 11c, 9h, 12c, 3s, 13c, 10h, 1d, 4s, 6h, 12d, 9s, 11d, 10s, 10d, 11s, 9d, 12s, 8d, 13s, 7d, 1h, 6d, 2h, 5d, 3h, 4d, 4h, 3d, 5h, 2d]";
+		String Deck2 = "[8s, 13d, 1c, 7s, 2c, 13h, 3c, 6s, 4c, 12h, 5c, 5s, 6c, 11h, 7c, 7h, 8c, 1s, 9c, 8h, 10c, 2s, 11c, 9h, 12c, 3s, 13c, 10h, 1d, 4s, 6h, 12d, 9s, 11d, 10s, 10d, 11s, 9d, 12s, 8d, 13s, 7d, 1h, 6d, 2h, 5d, 3h, 4d, 4h, 3d, 5h, 2d]";
 		//N=8  ( 28 33 38 7 38 4 42 1 )
-		//String Deck3 = "[2d, 9c, 9s, 4s, 3d, 8h, 8s, 7d, 4d, 8d, 7s, 4c, 5d, 3s, 6s, 3h, 6d, 9d, 5s, 7h, 2s, 8c, 10d, 5c, 1s, 2h, 11d, 3c, 4h, 10c, 7c, 9h, 5h, 1h, 6c, 2c, 6h, 11c, 10h, 13s, 1c, 12c, 11h, 12s, 12h, 13c, 13h, 11s, 13d, 1d, 12d, 10s]";
+		String Deck3 = "[2d, 9c, 9s, 4s, 3d, 8h, 8s, 7d, 4d, 8d, 7s, 4c, 5d, 3s, 6s, 3h, 6d, 9d, 5s, 7h, 2s, 8c, 10d, 5c, 1s, 2h, 11d, 3c, 4h, 10c, 7c, 9h, 5h, 1h, 6c, 2c, 6h, 11c, 10h, 13s, 1c, 12c, 11h, 12s, 12h, 13c, 13h, 11s, 13d, 1d, 12d, 10s]";
 		//N=16  ( 11 37 11 22 36 43 27 46 26 31 12 2 40 28 15 11 )
-		//String Deck4 = "[11s, 3c, 1s, 3d, 13h, 7s, 10h, 3s, 5h, 3h, 7c, 12d, 8s, 9h, 4c, 8c, 10s, 10c, 11c, 5d, 1c, 11d, 10d, 9d, 13s, 5s, 12c, 1d, 9s, 2h, 5c, 7d, 12h, 6h, 1h, 4s, 7h, 8d, 4d, 2s, 13c, 6c, 11h, 12s, 6s, 2c, 9c, 13d, 4h, 6d, 8h, 2d]";
+		String Deck4 = "[11s, 3c, 1s, 3d, 13h, 7s, 10h, 3s, 5h, 3h, 7c, 12d, 8s, 9h, 4c, 8c, 10s, 10c, 11c, 5d, 1c, 11d, 10d, 9d, 13s, 5s, 12c, 1d, 9s, 2h, 5c, 7d, 12h, 6h, 1h, 4s, 7h, 8d, 4d, 2s, 13c, 6c, 11h, 12s, 6s, 2c, 9c, 13d, 4h, 6d, 8h, 2d]";
 		//N=32  ( 38 39 25 39 16 14 34 8 18 7 34 18 15 11 10 44 32 47 15 36 28 41 41 23 37 16 30 17 14 17 36 15 )
-		//String Deck5 = "[6s, 9s, 7s, 13c, 6c, 12c, 4h, 2s, 8d, 1h, 6h, 13h, 11d, 9h, 10s, 10c, 3s, 8h, 10d, 12h, 3d, 8s, 11h, 12d, 4d, 7d, 8c, 5c, 5d, 6d, 2c, 1d, 13d, 9c, 4c, 4s, 1c, 12s, 7c, 11s, 10h, 5s, 11c, 2h, 5h, 2d, 3h, 9d, 13s, 3c, 7h, 1s]";
+		String Deck5 = "[6s, 9s, 7s, 13c, 6c, 12c, 4h, 2s, 8d, 1h, 6h, 13h, 11d, 9h, 10s, 10c, 3s, 8h, 10d, 12h, 3d, 8s, 11h, 12d, 4d, 7d, 8c, 5c, 5d, 6d, 2c, 1d, 13d, 9c, 4c, 4s, 1c, 12s, 7c, 11s, 10h, 5s, 11c, 2h, 5h, 2d, 3h, 9d, 13s, 3c, 7h, 1s]";
 
 
 		//String technique = "INVERSION-CUTTING";

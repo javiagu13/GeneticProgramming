@@ -974,7 +974,7 @@ public class Deck {
 		numString=""; 
 		
 		//INTERCALATION-INSERTION
-		System.out.println("//String technique = \"INTERCALATION-CUTTING\";");
+		System.out.println("//String technique = \"INTERCALATION-INSERTION\";");
 		for(int i=2; i<=32; i=i*2){
 			for(int j=1;j<=i/2;j++){
 				//FIRST TECH
