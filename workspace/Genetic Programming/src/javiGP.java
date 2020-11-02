@@ -59,16 +59,18 @@ public class javiGP {
 	private int MIN=1; //Minimum number of card
 	private int MAX=52; //Maximum number of card
 	
-	private int POPULATIONSIZE=1000; //Number of Population
-	private int CROSSOVERNUMBER=500; //Crossover Rate
+	private int POPULATIONSIZE=10000; //Number of Population
+	private int CROSSOVERNUMBER=5000; //Crossover Rate
 	
-	private int MUTATION=200; //Number of mutations (technique+number)
-	private int MUTATIONUMBER=0; //Number of mutations (technique+number)
-	private int MUTATIONOPERATION=0; //Number of mutations (technique+number)
+	private int MUTATION=2000; //Number of mutations (technique+number)
+	private int MUTATIONUMBER=0; //Number of mutations (technique+number) REVISE CODEEEEEE
+	private int MUTATIONOPERATION=0; //Number of mutations (technique+number) REVISE CODEEEEEE
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE-HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
+	private int TECHNUM_PENALIZATION=5;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -111,17 +113,31 @@ public class javiGP {
 			//System.out.println(Individual.toString());
 			//System.out.println("--------------------");
 			int deckDistance;
+			int numOfTechniques=0;
 			if(this.DISTANCE.equals("SEQUENCE")){
 				deckDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, Individual);
+				if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=Individual.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
+				}
 			}
 			else if(this.DISTANCE.equals("HAMMING")){
 				deckDistance=testIndividualWithHammingDistance(this.initialDeckString, this.desiredDeckString, Individual);
+				if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=Individual.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
+				}
 			}
 			else{//HAMMING-SEQUENCE
 				deckDistance=testIndividualWithMixedDistanceHammingSequence(this.initialDeckString, this.desiredDeckString, Individual);
+				if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=Individual.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
 				}
-			Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(Individual, deckDistance);
+			}
+			Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(Individual, deckDistance+numOfTechniques);
 			population.add(tuple);	//Hay que sacar el vector distance y añadirselo :)
+			numOfTechniques=0;
 		}
 		
 		this.quickSortPopulation(0, this.POPULATIONSIZE-1);
@@ -141,11 +157,17 @@ public class javiGP {
 			//Adding number
 	        switch(randomOperation) 
 	        { 
-	            case "insertfan": 
-	                System.out.println("one"); 
+	            case "infaro": 
+	            	Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10)));
 	                break; 
-	            case "insertfanup": 
-	                System.out.println("two"); 
+	            case "infaroup": 
+	            	Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10))); 
+	                break; 
+	            case "outfaroup": 
+	            	Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10)));
+	                break; 
+	            case "outfaro": 
+	            	Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10)));
 	                break; 
 	            default: 
 	            	Individual.setLeftandMove(Integer.toString(randomIntBetween(this.MIN,this.MAX)));
@@ -159,9 +181,26 @@ public class javiGP {
 	}
 	
 	public void mutateDeck(ZuhaitzBitarra<String> tree){
+		 String number="";
 		 String randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
+		 switch(randomOperation) 
+	        { 
+	            case "infaro": 
+	            	number=Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10));
+	                break; 
+	            case "infaroup": 
+	            	number=Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10));
+	                break; 
+	            case "outfaroup": 
+	            	number=Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10));
+	                break; 
+	            case "outfaro": 
+	            	number=Integer.toString(randomIntBetween(this.MIN+9,this.MAX-10));
+	                break; 
+	            default: 
+	            	number=Integer.toString(randomIntBetween(this.MIN,this.MAX));
+	        } 
 		 //randomOperation=operators[randomIntBetween(0,this.operators.length-1)];
-	     String number=Integer.toString(randomIntBetween(this.MIN,this.MAX));
 	     tree.mutation(randomOperation,number);
 	}
 	
@@ -408,18 +447,32 @@ public class javiGP {
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
     		ZuhaitzBitarra<String> tree=this.population.get(i).getFirstElement();
     		int deckDistance;
+    		int numOfTechniques=0;
     		//int deckDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, tree);
     		if(this.DISTANCE.equals("SEQUENCE")){
     			deckDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, tree);
+    			if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=tree.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
+				}
 			}
 			else if(this.DISTANCE.equals("HAMMING")){
 				deckDistance=testIndividualWithHammingDistance(this.initialDeckString, this.desiredDeckString, tree);
+				if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=tree.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
+				}
 			}
 			else{//HAMMING-SEQUENCE
 				deckDistance=testIndividualWithMixedDistanceHammingSequence(this.initialDeckString, this.desiredDeckString, tree);
+				if(this.TECHNUM_CONSTRAINT.equals("YES")){
+					numOfTechniques=tree.size()/2;
+					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
 				}
-    		Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(tree, deckDistance);
-    		this.population.set(i, tuple);		
+			}
+    		Tuple<ZuhaitzBitarra<String>, Integer> tuple =new Tuple<ZuhaitzBitarra<String>, Integer>(tree, deckDistance-numOfTechniques);
+    		this.population.set(i, tuple);	
+    		numOfTechniques=0;
     	}
     	//4-quicksort everything so that it gets back to normal
     	this.quickSortPopulation(0, this.population.size()-1);
@@ -772,17 +825,17 @@ public class javiGP {
 		//String Deck5 = "[1s, 3s, 6c, 4c, 13s, 10d, 7h, 8h, 3h, 13d, 11c, 12s, 1d, 4s, 5c, 11s, 12h, 6s, 7d, 5h, 8d, 3c, 9c, 5s, 11h, 13c, 9h, 9s, 6h, 2s, 12d, 10s, 9d, 12c, 7s, 11d, 2d, 6d, 5d, 4h, 8c, 4d, 8s, 13h, 10h, 2h, 1h, 7c, 10c, 3d, 2c, 1c]";
 
 
-		String technique = "INTERCALATION-INVERSION";
+		//String technique = "INTERCALATION-INVERSION";
 		//N=2  ( 37 7 )
-		String Deck1 = "[12c, 3s, 13c, 2s, 1d, 1s, 2d, 4s, 11c, 5s, 10c, 6s, 9c, 7s, 8c, 8s, 7c, 9s, 6c, 10s, 5c, 11s, 4c, 12s, 3c, 13s, 2c, 1h, 1c, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d]";
+		//String Deck1 = "[12c, 3s, 13c, 2s, 1d, 1s, 2d, 4s, 11c, 5s, 10c, 6s, 9c, 7s, 8c, 8s, 7c, 9s, 6c, 10s, 5c, 11s, 4c, 12s, 3c, 13s, 2c, 1h, 1c, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d]";
 		//N=4  ( 19 8 37 31 )
-		String Deck2 = "[8s, 13d, 1c, 7s, 2c, 13h, 3c, 6s, 4c, 12h, 5c, 5s, 6c, 11h, 7c, 7h, 8c, 1s, 9c, 8h, 10c, 2s, 11c, 9h, 12c, 3s, 13c, 10h, 1d, 4s, 6h, 12d, 9s, 11d, 10s, 10d, 11s, 9d, 12s, 8d, 13s, 7d, 1h, 6d, 2h, 5d, 3h, 4d, 4h, 3d, 5h, 2d]";
+		//String Deck2 = "[8s, 13d, 1c, 7s, 2c, 13h, 3c, 6s, 4c, 12h, 5c, 5s, 6c, 11h, 7c, 7h, 8c, 1s, 9c, 8h, 10c, 2s, 11c, 9h, 12c, 3s, 13c, 10h, 1d, 4s, 6h, 12d, 9s, 11d, 10s, 10d, 11s, 9d, 12s, 8d, 13s, 7d, 1h, 6d, 2h, 5d, 3h, 4d, 4h, 3d, 5h, 2d]";
 		//N=8  ( 28 33 38 7 38 4 42 1 )
-		String Deck3 = "[2d, 9c, 9s, 4s, 3d, 8h, 8s, 7d, 4d, 8d, 7s, 4c, 5d, 3s, 6s, 3h, 6d, 9d, 5s, 7h, 2s, 8c, 10d, 5c, 1s, 2h, 11d, 3c, 4h, 10c, 7c, 9h, 5h, 1h, 6c, 2c, 6h, 11c, 10h, 13s, 1c, 12c, 11h, 12s, 12h, 13c, 13h, 11s, 13d, 1d, 12d, 10s]";
+		//String Deck3 = "[2d, 9c, 9s, 4s, 3d, 8h, 8s, 7d, 4d, 8d, 7s, 4c, 5d, 3s, 6s, 3h, 6d, 9d, 5s, 7h, 2s, 8c, 10d, 5c, 1s, 2h, 11d, 3c, 4h, 10c, 7c, 9h, 5h, 1h, 6c, 2c, 6h, 11c, 10h, 13s, 1c, 12c, 11h, 12s, 12h, 13c, 13h, 11s, 13d, 1d, 12d, 10s]";
 		//N=16  ( 11 37 11 22 36 43 27 46 26 31 12 2 40 28 15 11 )
-		String Deck4 = "[11s, 3c, 1s, 3d, 13h, 7s, 10h, 3s, 5h, 3h, 7c, 12d, 8s, 9h, 4c, 8c, 10s, 10c, 11c, 5d, 1c, 11d, 10d, 9d, 13s, 5s, 12c, 1d, 9s, 2h, 5c, 7d, 12h, 6h, 1h, 4s, 7h, 8d, 4d, 2s, 13c, 6c, 11h, 12s, 6s, 2c, 9c, 13d, 4h, 6d, 8h, 2d]";
+		//String Deck4 = "[11s, 3c, 1s, 3d, 13h, 7s, 10h, 3s, 5h, 3h, 7c, 12d, 8s, 9h, 4c, 8c, 10s, 10c, 11c, 5d, 1c, 11d, 10d, 9d, 13s, 5s, 12c, 1d, 9s, 2h, 5c, 7d, 12h, 6h, 1h, 4s, 7h, 8d, 4d, 2s, 13c, 6c, 11h, 12s, 6s, 2c, 9c, 13d, 4h, 6d, 8h, 2d]";
 		//N=32  ( 38 39 25 39 16 14 34 8 18 7 34 18 15 11 10 44 32 47 15 36 28 41 41 23 37 16 30 17 14 17 36 15 )
-		String Deck5 = "[6s, 9s, 7s, 13c, 6c, 12c, 4h, 2s, 8d, 1h, 6h, 13h, 11d, 9h, 10s, 10c, 3s, 8h, 10d, 12h, 3d, 8s, 11h, 12d, 4d, 7d, 8c, 5c, 5d, 6d, 2c, 1d, 13d, 9c, 4c, 4s, 1c, 12s, 7c, 11s, 10h, 5s, 11c, 2h, 5h, 2d, 3h, 9d, 13s, 3c, 7h, 1s]";
+		//String Deck5 = "[6s, 9s, 7s, 13c, 6c, 12c, 4h, 2s, 8d, 1h, 6h, 13h, 11d, 9h, 10s, 10c, 3s, 8h, 10d, 12h, 3d, 8s, 11h, 12d, 4d, 7d, 8c, 5c, 5d, 6d, 2c, 1d, 13d, 9c, 4c, 4s, 1c, 12s, 7c, 11s, 10h, 5s, 11c, 2h, 5h, 2d, 3h, 9d, 13s, 3c, 7h, 1s]";
 
 
 		//String technique = "INVERSION-CUTTING";
@@ -825,9 +878,9 @@ public class javiGP {
 
 
 		//Mnemonica
-		//String Deck3 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
+		String Deck4 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
 		
-		
+		/*
 		for (int i=0; i<15;i++){
 			System.out.println("----------------------------------------"+i+"---------------------------------------");
 			System.out.println("--------------------------------------------------------------------------------");
@@ -1164,8 +1217,8 @@ public class javiGP {
 			
 			gp.pointsToCSV(technique,Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32);
 			
-		}
-		/*
+		}*/
+		
 		
 		javiGP gp = new javiGP();
 		//gp.pointsToCSV(technique,Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32);
@@ -1185,7 +1238,7 @@ public class javiGP {
 			Points1n2.add(gp.population.get(0).getSecondElement());
 			j++;
 		}
-		gp.printPopulation(15);*/
+		gp.printPopulation(30);
 		//TESTING
 		
 		/*

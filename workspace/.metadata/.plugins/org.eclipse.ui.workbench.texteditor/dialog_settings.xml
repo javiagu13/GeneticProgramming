@@ -9,13 +9,13 @@
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
 			<item value="distance"/>
+			<item value="deckDistance"/>
 			<item value="hamming"/>
-			<item value="distanceVe"/>
-			<item value="testIndivi"/>
-			<item value="slipcutup7slipcut20"/>
-			<item value="slipcutup7slipcut20slipcutup7slipcut20slipcutup7"/>
-			<item value="inorden"/>
-			<item value="shit"/>
+			<item value="sequence"/>
+			<item value="sequencedist"/>
+			<item value="testIndividualWithMixedDistanceHammingSequence"/>
+			<item value="printcurr"/>
+			<item value="printC"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CurrentDeckOrder"/>
@@ -25,7 +25,7 @@
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="1029" key="DIALOG_X_ORIGIN"/>
-		<item value="198" key="DIALOG_Y_ORIGIN"/>
+		<item value="921" key="DIALOG_X_ORIGIN"/>
+		<item value="330" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
