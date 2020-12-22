@@ -98,6 +98,19 @@ public class ZuhaitzBitarra<E> {
 			if (this.hasRight())
 				this.right.aurreordenInprimatu();
 		}
+		
+		private ArrayList<String> getPreOrder(ArrayList<String> tech) {
+			System.out.print(getInfo() + " ");
+			if (this.hasLeft()){
+				tech.add((String)this.left.info);
+				this.left.getPreOrder(tech);
+			}
+			if (this.hasRight()){
+				tech.add((String)this.right.info);
+				this.right.getPreOrder(tech);
+			}
+			return tech;
+		}
 
 		private void inordenInprimatu() {
 			if (this.hasLeft())
@@ -326,7 +339,16 @@ public class ZuhaitzBitarra<E> {
 			this.root.aurreordenInprimatu();
 		System.out.println("");
 	}
-
+	
+	public ArrayList<String> getPreOrder() {
+		ArrayList<String> tech = new ArrayList<>();
+		if (!this.isEmpty()){
+			tech.add((String)this.root.info);
+			return this.root.getPreOrder(tech);
+		}
+		return null;
+	}
+	
 	public void inordenInprimatu() {
 		if (!this.isEmpty())
 			this.root.inordenInprimatu();
@@ -357,6 +379,45 @@ public class ZuhaitzBitarra<E> {
 	        }
 	    }  
 	    return current;
+	}
+	
+	private int randomIntBetween(int min, int max){
+	 	Random rand=new Random();
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    return randomNum;
+	}
+	
+	public void randomizeParams() {
+		int counter=0;
+		
+	    Stack<Adabegi> stack = new Stack<Adabegi>();
+	    Adabegi current = root;
+	    stack.push(root);
+	    String tech=(String) root.info;
+	    while(!stack.isEmpty()) {
+	    	counter++;	    	
+	        current = stack.pop();
+	        if(counter%2!=0){
+	    		//IS A TECHNIQUE
+	    		tech=(String) current.info;
+	    	}
+	    	if(counter%2==0){
+	    		//IS A PARAM
+	    		if (tech.equals("infaro")||tech.equals("outfaro")||tech.equals("infaroup")||tech.equals("outfaroup")){
+	    			current.info=Integer.toString(randomIntBetween(10,42));
+	    		}
+	    		else if(tech.equals("peal")||tech.equals("pealup")||tech.equals("cut")||tech.equals("slipcut")||tech.equals("slipcutup")){
+	    			current.info=Integer.toString(randomIntBetween(1,52));
+	    		}
+	    	}
+	        //visit(current.info);
+	        if(current.right != null) {
+	            stack.push(current.right);
+	        }    
+	        if(current.left != null) {
+	            stack.push(current.left);
+	        }
+	    }  
 	}
 	
 	public void deleteAtTreeSize(int number) { //Hacer contador te paras en el nodo y lo devuelves :)
