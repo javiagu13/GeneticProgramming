@@ -77,7 +77,7 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="HAMMING-SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
 	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	
@@ -664,9 +664,9 @@ public class javiGP {
 		
 
 		//Mnemonica
-		String Deck4 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
+		//String Deck4 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
 		
-		/*ArrayList<Integer> Points1n2=new ArrayList<>();
+		ArrayList<Integer> Points1n2=new ArrayList<>();
 		ArrayList<Integer> Points2n2=new ArrayList<>();
 		ArrayList<Integer> Points3n2=new ArrayList<>();
 		
@@ -1370,11 +1370,11 @@ public class javiGP {
 						}
 					}
 					
-					gp.pointsToCSV(technique,"SECOND_EXP1point",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
+					gp.pointsToCSV(technique,"THIRDEXP_ParamOptimization_10",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
 				}
 				Points1n2.clear();Points2n2.clear();Points3n2.clear();Points1n4.clear();Points2n4.clear();Points3n4.clear();Points1n8.clear();Points2n8.clear();Points3n8.clear();Points1n16.clear();Points1n32.clear();Points2n32.clear();Points3n32.clear();techNum1n2.clear();techNum2n2.clear();techNum3n2.clear();techNum1n4.clear();techNum2n4.clear();techNum3n4.clear();techNum1n8.clear();techNum2n8.clear();techNum3n8.clear();techNum1n16.clear();techNum2n16.clear();techNum3n16.clear();techNum1n32.clear();techNum2n32.clear();techNum3n32.clear();
 		}
-		*/
+		/*
 		
 		
 		javiGP gp = new javiGP();
@@ -1396,7 +1396,11 @@ public class javiGP {
 			//Points1n2.add(gp.population.get(0).getSecondElement());
 			j++;
 		}
-		gp.printPopulation(3);
+		gp.printPopulation(3);*/
+		
+		
+		
+		
 		//TESTING
 		
 		/*

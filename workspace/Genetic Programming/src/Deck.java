@@ -502,46 +502,36 @@ public class Deck {
 	
 	public int vectorDistance(ArrayList finalDeck){
 		int i=0; int j=0; int points=0;
-		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
-			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
-					i++; j++;
-					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
-						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-							i++; j++;
-							points = points+10;
-						}
-						else{break;}
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+						i++; j++;
+						points = points+10;
 					}
-					//j=0;
-					break;
+					else{break;}
 				}
-				else{j++;}
 			}
-			j=0;
+			i++;j++;
 		}
 		return points;
 	}
 	
 	public int vectorDistanceWithBackupDeck(ArrayList finalDeck){
 		int i=0; int j=0; int points=0;
-		while (i<this.CurrentDeckBackup.size()){ //Posiblemente este mal y haya que hacer -1
-			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-				if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
-					i++; j++;
-					while (i<this.CurrentDeckBackup.size()&&j<finalDeck.size()){
-						if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-							i++; j++;
-							points = points+10;
-						}
-						else{break;}
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckBackup.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+						i++; j++;
+						points = points+10;
 					}
-					//j=0;
-					break;
+					else{break;}
 				}
-				else{j++;}
 			}
-			j=0;
+			i++;j++;
 		}
 		return points;
 	}
@@ -568,23 +558,18 @@ public class Deck {
 	
 	public int MixedDistanceSequenceHamming(ArrayList finalDeck){
 		int i=0; int j=0; int pointsSequence=0;
-		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
-			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
-					i++; j++;
-					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
-						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-							i++; j++;
-							pointsSequence = pointsSequence+5;
-						}
-						else{break;}
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+						i++; j++;
+						pointsSequence = pointsSequence+5;
 					}
-					//j=0;
-					break;
+					else{break;}
 				}
-				else{j++;}
 			}
-			j=0;
+			i++;j++;
 		}
 		
 		int pointsHamming=0;
