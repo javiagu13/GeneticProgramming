@@ -78,7 +78,7 @@ public class javiGP {
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
 	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
-	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
+	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
@@ -468,7 +468,7 @@ public class javiGP {
     	//save current tree and punctuation
     	//in zuhaitza class tweak parameters
     	//if tree is best, save combination and save punctuation.
-    	/*
+    	
     	//for every tree in the population
     	for (int i =0; i<this.population.size();i++){
     		ZuhaitzBitarra<String> currenTree = population.get(i).getFirstElement(); //we save the current tree
@@ -494,7 +494,7 @@ public class javiGP {
     		}
     		//now we repeat the process all over again with each tree in the population
     	}
-    	*/
+    	
     	
     	//Update puntuations
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
@@ -1370,7 +1370,7 @@ public class javiGP {
 						}
 					}
 					
-					gp.pointsToCSV(technique,"SECOND_EXP1point",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
+					gp.pointsToCSV(technique,"THIRDEXP_ParamOptimization_10",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
 				}
 				Points1n2.clear();Points2n2.clear();Points3n2.clear();Points1n4.clear();Points2n4.clear();Points3n4.clear();Points1n8.clear();Points2n8.clear();Points3n8.clear();Points1n16.clear();Points1n32.clear();Points2n32.clear();Points3n32.clear();techNum1n2.clear();techNum2n2.clear();techNum3n2.clear();techNum1n4.clear();techNum2n4.clear();techNum3n4.clear();techNum1n8.clear();techNum2n8.clear();techNum3n8.clear();techNum1n16.clear();techNum2n16.clear();techNum3n16.clear();techNum1n32.clear();techNum2n32.clear();techNum3n32.clear();
 		}

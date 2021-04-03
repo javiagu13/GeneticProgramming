@@ -76,7 +76,7 @@ public class javiGPTest {
 	private int NUMPARAMOPTIMIZATION=10; //number of times each trees parameters will be tweaked
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
-	private int LENGTHMAXOFTREE=4*2;
+	private int LENGTHMAXOFTREE=5*2;
 	private String DISTANCE="HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
 	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
@@ -469,7 +469,7 @@ public class javiGPTest {
     	//in zuhaitza class tweak parameters
     	//if tree is best, save combination and save punctuation.
     	
-    	//AQUI
+    	/*
     	//for every tree in the population
     	for (int i =0; i<this.population.size();i++){
     		ZuhaitzBitarra<String> currenTree = population.get(i).getFirstElement(); //we save the current tree
@@ -495,8 +495,8 @@ public class javiGPTest {
     		}
     		//now we repeat the process all over again with each tree in the population
     	}
+    	*/
     	
-    	//AQUI
     	//Update puntuations
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
     		ZuhaitzBitarra<String> tree=this.population.get(i).getFirstElement();
@@ -557,7 +557,7 @@ public class javiGPTest {
 		gp.buildPopulation();
 		
 		int j = 0;
-		int iterations=1000;
+		int iterations=1000000;
 			
 		//while(gp.population.get(0).getSecondElement()<510&&i<iterations){
 		while(gp.population.get(0).getSecondElement()<510&&j<iterations){

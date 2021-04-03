@@ -2025,15 +2025,27 @@ public class Deck2 {
 	
 	public static void main(String[] args) {
 		Deck2 Baraja = new Deck2("[b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r]");
-		//String Deck= "[b, b, b, b, b, b, b, r, r, r, r, b, r, r, r, r, b, b, b, b, b, b, b, b, b, b, r, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, b, r, b, b, r, b, r, b, b, b]";
-		//infaroup 23 infaro 23 infaro 23 infaroup 17 
+		//eck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		//ArrayList<String> finalDeck2 = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+
 		
 		
 		
-		Baraja.faceUpInPartialFaroCurrentDeck(23);
-		Baraja.inPartialFaroCurrentDeck(23);
-		Baraja.inPartialFaroCurrentDeck(23);
-		Baraja.faceUpInPartialFaroCurrentDeck(17);
+		Baraja.outPartialFaroCurrentDeck(35);
+		Baraja.faceUpOutPartialFaroCurrentDeck(24);
+		Baraja.faceUpInPartialFaroCurrentDeck(24);
+		Baraja.faceUpInPartialFaroCurrentDeck(24);
+		//[b, r, r, b, b, b, r, b, b, b, b, b, b, b, b, b, b, b, b, r, b, r, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, b, 
+		
+		//String Deck= "[b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, r, r, r, r, r, r, r, r, r, b, r, b, r, r, r, r, r, b, r, b, r, r, r, r, r, b, r, b, r, r, r, r]";
+		//outfaroup 26 outfaro 32 infaro 16 outfaro 16 outfaroup 20 
+		//SEQ
+		//String Deck= "[b, b, b, b, b, b, b, b, b, b, b, b, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, b, b, b, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r]";
+		//infaro 16 outfaro 17 infaro 16 infaro 15 
+		Baraja.inPartialFaroCurrentDeck(16);
+		Baraja.outPartialFaroCurrentDeck(17);
+		Baraja.inPartialFaroCurrentDeck(16);
+		Baraja.inPartialFaroCurrentDeck(15);
 		
 
 

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class Deck2 {
+public class Deck {
 	private ArrayList<String> CurrentDeckBackup = new ArrayList<String>(); 
 	private ArrayList<String> CurrentDeckOrder = new ArrayList<String>(); 
 	
@@ -14,7 +14,7 @@ public class Deck2 {
 	
 	private ArrayList<ArrayList<String>> combinationMatrix = new ArrayList<ArrayList<String>>(); 
 	
-	public Deck2(){
+	public Deck(){
 		//CurrentDeckOrder
 		
 		
@@ -86,7 +86,7 @@ public class Deck2 {
 		System.out.println("");
 	}
 	
-	public Deck2(String initialDeck){
+	public Deck(String initialDeck){
 		
 		//Initial Deck Building From String
 		StringBuilder sb = new StringBuilder();
@@ -500,75 +500,51 @@ public class Deck2 {
 		return this.CurrentDeckOrder.toString().equals(finalDeck.toString());
 	}
 	
-	public int vectorDistance(ArrayList finalDeck, boolean SpecificCards){
+	public int vectorDistance(ArrayList finalDeck){
+		System.out.println(finalDeck);
 		int i=0; int j=0; int points=0;
-			while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
-				while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-					if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
 						i++; j++;
-						while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
-							if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-								i++; j++;
-								points = points+10;
-							}
-							else{break;}
-						}
-						//j=0;
-						break;
+						points = points+10;
 					}
-					else{j++;}
+					else{break;}
 				}
-				j=0;
 			}
+			i++;j++;
+		}
 		return points;
 	}
 	
 	public int vectorDistanceWithBackupDeck(ArrayList finalDeck){
 		int i=0; int j=0; int points=0;
-		while (i<this.CurrentDeckBackup.size()){ //Posiblemente este mal y haya que hacer -1
-			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-				if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
-					i++; j++;
-					while (i<this.CurrentDeckBackup.size()&&j<finalDeck.size()){
-						if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-							i++; j++;
-							points = points+10;
-						}
-						else{break;}
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckBackup.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckBackup.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+						i++; j++;
+						points = points+10;
 					}
-					//j=0;
-					break;
+					else{break;}
 				}
-				else{j++;}
 			}
-			j=0;
+			i++;j++;
 		}
 		return points;
 	}
 	
-	public int hammingDistance(ArrayList finalDeck, boolean SpecificCards){
+	public int hammingDistance(ArrayList finalDeck){
 		int points=0;
-		if (!SpecificCards){
-			for(int i=0;i<this.CurrentDeckOrder.size();i++){
-				if(this.CurrentDeckOrder.get(i).equals(finalDeck.get(i))){
-					points=points+10;
-				}
+		for(int i=0;i<this.CurrentDeckOrder.size();i++){
+			if(this.CurrentDeckOrder.get(i).equals(finalDeck.get(i))){
+				points=points+10;
 			}
-			return points-10;
 		}
-		else{
-			for(int i=0;i<this.CurrentDeckOrder.size();i++){
-				if(this.CurrentDeckOrder.get(i).equals(finalDeck.get(i))){
-					if(!this.CurrentDeckOrder.get(i).equals("-")){
-						if(!finalDeck.get(i).equals("-")){
-							points=points+10;
-						}
-					}
-				}
-			}
-			return points-10;
-		}
-		
+		return points-10;
 	}
 	
 	public int hammingDistanceWithBackupDeck(ArrayList finalDeck){
@@ -581,25 +557,20 @@ public class Deck2 {
 		return points-10;
 	}
 	
-	public int MixedDistanceSequenceHamming(ArrayList finalDeck, boolean SpecificCards){
+	public int MixedDistanceSequenceHamming(ArrayList finalDeck){
 		int i=0; int j=0; int pointsSequence=0;
-		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
-			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
-				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
-					i++; j++;
-					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
-						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
-							i++; j++;
-							pointsSequence = pointsSequence+5;
-						}
-						else{break;}
+		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+				i++; j++;
+				while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+					if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+						i++; j++;
+						pointsSequence = pointsSequence+5;
 					}
-					//j=0;
-					break;
+					else{break;}
 				}
-				else{j++;}
 			}
-			j=0;
+			i++;j++;
 		}
 		
 		int pointsHamming=0;
@@ -1289,8 +1260,8 @@ public class Deck2 {
 							}
 							//aplicar metrica aqui para obtener resultados de la combinación actual
 							if(technique.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistanceWithBackupDeck(this.CurrentDeckOrder));}
-							else if(technique.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(this.CurrentDeckOrder,true));}
-							else if(technique.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(this.CurrentDeckOrder,true));}
+							else if(technique.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(this.CurrentDeckOrder));}
+							else if(technique.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(this.CurrentDeckOrder));}
 							if(!linePrinter.equals("")){if(cont==1000000||cont==3000000||cont==10000000||cont==20000000||cont==30000000||cont==40000000||cont==50000000){System.out.println(cont);}csvWriter.append(linePrinter+"\n");	cont++;}
 							linePrinter="";
 							doDeckToBackupState();
@@ -1315,7 +1286,7 @@ public class Deck2 {
 	
 	public void metricAnalyzerN4LastPos(ArrayList<Integer> techniqueSet, Integer numberOfSametech, String metric, String technique){
 		try {
-		Deck2 modifiedDeck=new Deck2();
+		Deck modifiedDeck=new Deck();
 		switch(technique){
 		case "CUT"://CUT
 			modifiedDeck.cutCurrentDeck(numberOfSametech);
@@ -1469,9 +1440,9 @@ public class Deck2 {
 					}
 				}
 				//aplicar metrica aqui para obtener resultados de la combinación actual
-				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder(),true));}
+				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder()));}
 				if(!linePrinter.equals("")){if(cont==1000000||cont==3000000||cont==10000000||cont==20000000||cont==30000000||cont==40000000||cont==50000000){System.out.println(cont);}csvWriter.append(linePrinter+"\n");	cont++;}
 				linePrinter="";
 				doDeckToBackupState();
@@ -1493,7 +1464,7 @@ public class Deck2 {
 	
 	public void metricAnalyzerN4PrevToLastPos(ArrayList<Integer> techniqueSet, Integer numberOfSametech, String metric, String technique){
 		try {
-			Deck2 modifiedDeck=new Deck2();
+			Deck modifiedDeck=new Deck();
 			switch(technique){
 			case "CUT"://CUT
 				modifiedDeck.cutCurrentDeck(numberOfSametech);
@@ -1646,9 +1617,9 @@ public class Deck2 {
 					}
 				}
 				//aplicar metrica aqui para obtener resultados de la combinación actual
-				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder(),true));}
+				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder()));}
 				if(!linePrinter.equals("")){if(cont==1000000||cont==3000000||cont==10000000||cont==20000000||cont==30000000||cont==40000000||cont==50000000){System.out.println(cont);}csvWriter.append(linePrinter+"\n");	cont++;}
 				linePrinter="";
 				doDeckToBackupState();
@@ -1670,7 +1641,7 @@ public class Deck2 {
 	
 	public void metricAnalyzerN4FirstPos(ArrayList<Integer> techniqueSet, Integer numberOfSametech, String metric, String technique){
 		try {
-			Deck2 modifiedDeck=new Deck2();
+			Deck modifiedDeck=new Deck();
 			switch(technique){
 			case "CUT"://CUT
 				modifiedDeck.cutCurrentDeck(numberOfSametech);
@@ -1823,9 +1794,9 @@ public class Deck2 {
 					}
 				}
 				//aplicar metrica aqui para obtener resultados de la combinación actual
-				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder(),true));}
+				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder()));}
 				if(!linePrinter.equals("")){if(cont==1000000||cont==3000000||cont==10000000||cont==20000000||cont==30000000||cont==40000000||cont==50000000){System.out.println(cont);}csvWriter.append(linePrinter+"\n");	cont++;}
 				linePrinter="";
 				doDeckToBackupState();
@@ -1847,7 +1818,7 @@ public class Deck2 {
 	
 	public void metricAnalyzerN4SecondPos(ArrayList<Integer> techniqueSet, Integer numberOfSametech, String metric, String technique){
 		try {
-			Deck2 modifiedDeck=new Deck2();
+			Deck modifiedDeck=new Deck();
 			switch(technique){
 			case "CUT"://CUT
 				modifiedDeck.cutCurrentDeck(numberOfSametech);
@@ -2001,9 +1972,9 @@ public class Deck2 {
 					}
 				}
 				//aplicar metrica aqui para obtener resultados de la combinación actual
-				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder(),true));}
-				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder(),true));}
+				if(metric.equals("SEQUENCE")&&!linePrinter.equals("")){linePrinter+=Integer.toString(vectorDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(hammingDistance(modifiedDeck.getCurrentDeckOrder()));}
+				else if(metric.equals("SEQUENCE-HAMMING")&&!linePrinter.equals("")){linePrinter+=Integer.toString(MixedDistanceSequenceHamming(modifiedDeck.getCurrentDeckOrder()));}
 				if(!linePrinter.equals("")){if(cont==1000000||cont==3000000||cont==10000000||cont==20000000||cont==30000000||cont==40000000||cont==50000000){System.out.println(cont);}csvWriter.append(linePrinter+"\n");	cont++;}
 				linePrinter="";
 				doDeckToBackupState();
@@ -2024,20 +1995,23 @@ public class Deck2 {
 	}
 	
 	public static void main(String[] args) {
-		Deck2 Baraja = new Deck2("[b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r]");
-		//String Deck= "[b, b, b, b, b, b, b, r, r, r, r, b, r, r, r, r, b, b, b, b, b, b, b, b, b, b, r, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, b, r, b, b, r, b, r, b, b, b]";
-		//infaroup 23 infaro 23 infaro 23 infaroup 17 
+		Deck Baraja = new Deck();
+		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		ArrayList<String> finalDeck2 = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
 		
+		Baraja.cutCurrentDeck(20);
+		Baraja.cutCurrentDeck(20);
+		Baraja.cutCurrentDeck(20);
+		Baraja.cutCurrentDeck(20);
 		
+		Baraja.printCurrentDeck();
 		
-		Baraja.faceUpInPartialFaroCurrentDeck(23);
-		Baraja.inPartialFaroCurrentDeck(23);
-		Baraja.inPartialFaroCurrentDeck(23);
-		Baraja.faceUpInPartialFaroCurrentDeck(17);
+		Baraja.doDeckToBackupState();
 		
-
-
-	
+		Baraja.faceUpInPartialFaroCurrentDeck(32);
+		Baraja.cutCurrentDeck(20);
+		Baraja.cutCurrentDeck(20);
+		Baraja.cutCurrentDeck(20);
 		
 		Baraja.printCurrentDeck();
 		//Baraja.setCurrentDeckOrder(finalDeck);

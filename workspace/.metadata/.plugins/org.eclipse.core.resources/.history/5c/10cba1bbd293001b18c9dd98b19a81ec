@@ -282,7 +282,8 @@ public class javiGP {
 	public int testIndividualWithDistanceVector(String inputDeckOrder, String desiredDeckOrder,ZuhaitzBitarra<String> tree){
 		Deck desiredDeck = new Deck(desiredDeckOrder);
 		Deck inputDeck = new Deck(inputDeckOrder);
-		
+		System.out.println(desiredDeck);
+		System.out.println(inputDeck);
 		Deck outputDeck = applyIndividualToDeck(tree,inputDeck);
 		
 		int result=desiredDeck.vectorDistance(outputDeck.getCurrentDeckOrder());

@@ -2035,6 +2035,17 @@ public class Deck2 {
 		Baraja.inPartialFaroCurrentDeck(23);
 		Baraja.faceUpInPartialFaroCurrentDeck(17);
 		
+		 
+		//String Deck= "[b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, r, r, r, r, r, r, r, r, r, b, r, b, r, r, r, r, r, b, r, b, r, r, r, r, r, b, r, b, r, r, r, r]";
+		//outfaroup 26 outfaro 32 infaro 16 outfaro 16 outfaroup 20 
+		//SEQ
+		//String Deck= "[b, b, b, b, b, b, b, b, b, b, b, b, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, b, b, b, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r]";
+		//infaro 16 outfaro 17 infaro 16 infaro 15 
+		Baraja.inPartialFaroCurrentDeck(16);
+		Baraja.outPartialFaroCurrentDeck(17);
+		Baraja.inPartialFaroCurrentDeck(16);
+		Baraja.inPartialFaroCurrentDeck(15);
+		
 
 
 	

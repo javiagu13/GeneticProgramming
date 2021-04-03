@@ -495,8 +495,8 @@ public class javiGPTest {
     		}
     		//now we repeat the process all over again with each tree in the population
     	}
+    	//AQUI*/
     	
-    	//AQUI
     	//Update puntuations
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
     		ZuhaitzBitarra<String> tree=this.population.get(i).getFirstElement();

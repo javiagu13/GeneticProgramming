@@ -282,7 +282,6 @@ public class javiGP {
 	public int testIndividualWithDistanceVector(String inputDeckOrder, String desiredDeckOrder,ZuhaitzBitarra<String> tree){
 		Deck desiredDeck = new Deck(desiredDeckOrder);
 		Deck inputDeck = new Deck(inputDeckOrder);
-		
 		Deck outputDeck = applyIndividualToDeck(tree,inputDeck);
 		
 		int result=desiredDeck.vectorDistance(outputDeck.getCurrentDeckOrder());
@@ -997,10 +996,10 @@ public class javiGP {
 					System.out.println("--------------------------------------------------------------------------------");
 					javiGP gp = new javiGP();
 					gp.initializeNumbersArray();
-					gp.buildPopulation();
+					
 					if(i>=0&&i<=2){
 						gp.desiredDeckString= Deck1;
-
+						gp.buildPopulation();
 						switch(i){
 						case 0:
 							int j = 0;
@@ -1075,6 +1074,7 @@ public class javiGP {
 					}
 					else if (i>2&&i<=5){
 						gp.desiredDeckString= Deck2;
+						gp.buildPopulation();
 						switch(i){
 						case 3:
 							int j = 0;
@@ -1149,6 +1149,7 @@ public class javiGP {
 					}
 					else if (i>5&&i<=8){
 						gp.desiredDeckString= Deck3;
+						gp.buildPopulation();
 						switch(i){
 						case 6:
 							int j = 0;
@@ -1223,6 +1224,7 @@ public class javiGP {
 					}
 					else if (i>8&&i<=11){
 						gp.desiredDeckString= Deck4;
+						gp.buildPopulation();
 						switch(i){
 						case 9:
 							int j = 0;
@@ -1297,6 +1299,7 @@ public class javiGP {
 					}
 					else if(i>11&&i<=14){
 						gp.desiredDeckString= Deck5;
+						gp.buildPopulation();
 						switch(i){
 						case 12:
 							int j = 0;
