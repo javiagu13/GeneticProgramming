@@ -72,7 +72,7 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String DISTANCE="SEQUENCE-HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
 	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	

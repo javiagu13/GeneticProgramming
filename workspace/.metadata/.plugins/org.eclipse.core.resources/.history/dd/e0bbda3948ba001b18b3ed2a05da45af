@@ -72,7 +72,7 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String DISTANCE="SEQUENCE-HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
 	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	
@@ -468,33 +468,8 @@ public class javiGP {
     	//for every tree in the population
     	for (int i =0; i<this.population.size();i++){
     		ZuhaitzBitarra<String> currenTree = population.get(i).getFirstElement(); //we save the current tree
-    		int Distance;
-    		int numOfTechniques=0;
-    		if(this.DISTANCE.equals("SEQUENCE")){
-    			Distance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, currenTree);
-    			if(this.TECHNUM_CONSTRAINT.equals("YES")){
-					numOfTechniques=currenTree.size()/2;
-					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-					Distance=Distance-numOfTechniques;
-				}
-			}
-    		else if(this.DISTANCE.equals("HAMMING")){
-				Distance=testIndividualWithHammingDistance(this.initialDeckString, this.desiredDeckString, currenTree);
-				if(this.TECHNUM_CONSTRAINT.equals("YES")){
-					numOfTechniques=currenTree.size()/2;
-					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-					Distance=Distance-numOfTechniques;
-				}
-			}
-			else{//HAMMING-SEQUENCE
-				Distance=testIndividualWithMixedDistanceHammingSequence(this.initialDeckString, this.desiredDeckString, currenTree);
-				if(this.TECHNUM_CONSTRAINT.equals("YES")){
-					numOfTechniques=currenTree.size()/2;
-					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-					Distance=Distance-numOfTechniques;
-				}
-			}
     		
+    		int Distance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, currenTree);//calculate the distance we will try to improve
     		int maxDistancePoints = Distance;//save distance in maxDistancePoints
     		ZuhaitzBitarra<String> bestTree=new ZuhaitzBitarra<String>(); // initialize a variable where we will store the best tree for the current tree among the NUMPARAMOPTIMIZATION number of iterations
     		for(int j = 0; j<this.NUMPARAMOPTIMIZATION; j++){
@@ -503,33 +478,7 @@ public class javiGP {
         		paramTweakTree.cloneTree(currenTree.getRoot());//we clone the currenTree in order not to lose the current tree
         		paramTweakTree.randomizeParams();//we tweak the parameters in this new copied tree
          		
-        		
-        		int newDistance;
-        		numOfTechniques=0;
-        		if(this.DISTANCE.equals("SEQUENCE")){
-        			newDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, paramTweakTree);
-        			if(this.TECHNUM_CONSTRAINT.equals("YES")){
-    					numOfTechniques=currenTree.size()/2;
-    					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-    					newDistance=newDistance-numOfTechniques;
-    				}
-    			}
-        		else if(this.DISTANCE.equals("HAMMING")){
-        			newDistance=testIndividualWithHammingDistance(this.initialDeckString, this.desiredDeckString, paramTweakTree);
-    				if(this.TECHNUM_CONSTRAINT.equals("YES")){
-    					numOfTechniques=currenTree.size()/2;
-    					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-    					newDistance=newDistance-numOfTechniques;
-    				}
-    			}
-    			else{//HAMMING-SEQUENCE
-    				newDistance=testIndividualWithMixedDistanceHammingSequence(this.initialDeckString, this.desiredDeckString, paramTweakTree);
-    				if(this.TECHNUM_CONSTRAINT.equals("YES")){
-    					numOfTechniques=currenTree.size()/2;
-    					numOfTechniques=numOfTechniques*this.TECHNUM_PENALIZATION;
-    					newDistance=newDistance-numOfTechniques;
-    				}
-    			}
+         		int newDistance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, paramTweakTree);//calculate its distance
          		if(newDistance > maxDistancePoints){//if the newDistance is better than the current maximum
          			maxDistancePoints = newDistance;//we update maximum
          			bestTree.cloneTree(paramTweakTree.getRoot());//and we copy our tree to best Tree
