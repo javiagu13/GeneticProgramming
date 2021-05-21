@@ -500,7 +500,7 @@ public class Deck {
 		return this.CurrentDeckOrder.toString().equals(finalDeck.toString());
 	}
 	
-	public int vectorDistance(ArrayList finalDeck){
+	/*public int vectorDistance(ArrayList finalDeck){
 		int i=0; int j=0; int points=0;
 		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
 			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
@@ -510,14 +510,36 @@ public class Deck {
 						i++; j++;
 						points = points+10;
 					}
-					else{break;}
+					else{i=0;break;}
 				}
 			}
 			i++;j++;
 		}
 		return points;
-	}
+	}*/
 	
+	public int vectorDistance(ArrayList finalDeck){
+		int i=0; int j=0; int points=0;
+		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
+			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+					i++; j++;
+					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+							i++; j++;
+							points = points+10;
+						}
+						else{break;}
+					}
+					//j=0;
+					break;
+				}
+				else{j++;}
+			}
+			j=0;
+		}
+		return points;
+	}
 	public int vectorDistanceWithBackupDeck(ArrayList finalDeck){
 		int i=0; int j=0; int points=0;
 		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
@@ -558,6 +580,36 @@ public class Deck {
 	
 	public int MixedDistanceSequenceHamming(ArrayList finalDeck){
 		int i=0; int j=0; int pointsSequence=0;
+		while (i<this.CurrentDeckOrder.size()){ //Posiblemente este mal y haya que hacer -1
+			while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
+				if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
+					i++; j++;
+					while (i<this.CurrentDeckOrder.size()&&j<finalDeck.size()){
+						if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI SUMAS PUNTOS
+							i++; j++;
+							pointsSequence = pointsSequence+5;
+						}
+						else{break;}
+					}
+					//j=0;
+					break;
+				}
+				else{j++;}
+			}
+			j=0;
+		}
+		
+		int pointsHamming=0;
+		for(int k=0;k<this.CurrentDeckOrder.size();k++){
+			if(this.CurrentDeckOrder.get(k).equals(finalDeck.get(k))){
+				pointsHamming=pointsHamming+5;
+			}
+		}
+		return pointsSequence+pointsHamming-5;
+	}
+	
+	/*public int MixedDistanceSequenceHamming(ArrayList finalDeck){
+		int i=0; int j=0; int pointsSequence=0;
 		while (j<finalDeck.size()){ //Posiblemente este mal y haya que hacer -1
 			if (this.CurrentDeckOrder.get(i).equals(finalDeck.get(j))){//AQUI PENALIZAS
 				i++; j++;
@@ -579,7 +631,7 @@ public class Deck {
 			}
 		}
 		return pointsSequence+pointsHamming-5;
-	}
+	}*/
 	
 	public int MixedDistanceSequenceHammingWithBackupDeck(ArrayList finalDeck){
 		int i=0; int j=0; int pointsSequence=0;
@@ -1997,20 +2049,21 @@ public class Deck {
 		Deck Baraja = new Deck();
 		ArrayList<String> finalDeck = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
 		ArrayList<String> finalDeck2 = Baraja.stringToArrayListDeck("[1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d, 12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c]");
+		Baraja.printCurrentDeck();
 		
-		Baraja.cutCurrentDeck(20);
-		Baraja.cutCurrentDeck(20);
-		Baraja.cutCurrentDeck(20);
-		Baraja.cutCurrentDeck(20);
-		
+		Baraja.cutCurrentDeck(30);
+		Baraja.cutCurrentDeck(30);
+		Baraja.cutCurrentDeck(30);
+		Baraja.cutCurrentDeck(30);
 		Baraja.printCurrentDeck();
 		
 		Baraja.doDeckToBackupState();
+		Baraja.printCurrentDeck();
 		
-		Baraja.faceUpInPartialFaroCurrentDeck(32);
-		Baraja.cutCurrentDeck(20);
-		Baraja.cutCurrentDeck(20);
-		Baraja.cutCurrentDeck(20);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.cutCurrentDeck(30);
+		Baraja.cutCurrentDeck(30);
+		Baraja.cutCurrentDeck(30);
 		
 		Baraja.printCurrentDeck();
 		//Baraja.setCurrentDeckOrder(finalDeck);

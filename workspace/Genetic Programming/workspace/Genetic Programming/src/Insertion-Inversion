@@ -1,0 +1,90 @@
+System.out.println("//Insertion-Inversion");
+		System.out.println("//n=2");
+		System.out.print("//");
+		Baraja.slipCutCurrentDeck(13);
+		Baraja.pealCurrentDeck(26);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=4");
+		System.out.print("//");
+		Baraja.slipCutCurrentDeck(13);
+		Baraja.pealCurrentDeck(26);		
+		Baraja.slipCutCurrentDeck(14);
+		Baraja.pealCurrentDeck(27);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=8");
+		System.out.print("//");
+		Baraja.slipCutCurrentDeck(13);
+		Baraja.pealCurrentDeck(26);		
+		Baraja.slipCutCurrentDeck(14);
+		Baraja.pealCurrentDeck(27);
+		Baraja.slipCutCurrentDeck(11);
+		Baraja.pealCurrentDeck(25);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.pealCurrentDeck(24);		
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=16");
+		System.out.print("//");
+		Baraja.slipCutCurrentDeck(13);
+		Baraja.pealCurrentDeck(26);		
+		Baraja.slipCutCurrentDeck(14);
+		Baraja.pealCurrentDeck(27);
+		Baraja.slipCutCurrentDeck(11);
+		Baraja.pealCurrentDeck(25);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.pealCurrentDeck(24);
+		
+		Baraja.slipCutCurrentDeck(9);
+		Baraja.pealCurrentDeck(23);
+		Baraja.slipCutCurrentDeck(8);
+		Baraja.pealCurrentDeck(22);
+		Baraja.slipCutCurrentDeck(7);
+		Baraja.pealCurrentDeck(21);
+		Baraja.slipCutCurrentDeck(6);
+		Baraja.pealCurrentDeck(20);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=32");
+		System.out.print("//");
+		Baraja.slipCutCurrentDeck(13);
+		Baraja.pealCurrentDeck(26);		
+		Baraja.slipCutCurrentDeck(14);
+		Baraja.pealCurrentDeck(27);
+		Baraja.slipCutCurrentDeck(11);
+		Baraja.pealCurrentDeck(25);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.pealCurrentDeck(24);
+		
+		Baraja.slipCutCurrentDeck(9);
+		Baraja.pealCurrentDeck(23);
+		Baraja.slipCutCurrentDeck(8);
+		Baraja.pealCurrentDeck(22);
+		Baraja.slipCutCurrentDeck(7);
+		Baraja.pealCurrentDeck(21);
+		Baraja.slipCutCurrentDeck(6);
+		Baraja.pealCurrentDeck(20);
+		
+		Baraja.slipCutCurrentDeck(2);
+		Baraja.pealCurrentDeck(4);
+		Baraja.slipCutCurrentDeck(8);
+		Baraja.pealCurrentDeck(10);
+		Baraja.slipCutCurrentDeck(11);
+		Baraja.pealCurrentDeck(12);
+		Baraja.slipCutCurrentDeck(2);
+		Baraja.pealCurrentDeck(33);
+		
+		Baraja.slipCutCurrentDeck(20);
+		Baraja.pealCurrentDeck(21);
+		Baraja.slipCutCurrentDeck(5);
+		Baraja.pealCurrentDeck(6);
+		Baraja.slipCutCurrentDeck(7);
+		Baraja.pealCurrentDeck(8);
+		Baraja.slipCutCurrentDeck(9);
+		Baraja.pealCurrentDeck(10);
+		Baraja.printCurrentDeck();

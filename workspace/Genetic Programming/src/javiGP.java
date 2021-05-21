@@ -5,11 +5,6 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap; // import the HashMap class
 
-
-
-
-
-
 public class javiGP {
 	
 	//Tree, points, num of techniques
@@ -77,8 +72,8 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
-	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
+	private String DISTANCE="SEQUENCE-HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
@@ -468,16 +463,17 @@ public class javiGP {
     	//save current tree and punctuation
     	//in zuhaitza class tweak parameters
     	//if tree is best, save combination and save punctuation.
-    	/*
+    	//AÑADIR ELECCION DE SEQUENCE HAMMING Y SEQUENCEHAMMING
+    	
     	//for every tree in the population
     	for (int i =0; i<this.population.size();i++){
     		ZuhaitzBitarra<String> currenTree = population.get(i).getFirstElement(); //we save the current tree
+    		
     		int Distance=testIndividualWithDistanceVector(this.initialDeckString, this.desiredDeckString, currenTree);//calculate the distance we will try to improve
     		int maxDistancePoints = Distance;//save distance in maxDistancePoints
     		ZuhaitzBitarra<String> bestTree=new ZuhaitzBitarra<String>(); // initialize a variable where we will store the best tree for the current tree among the NUMPARAMOPTIMIZATION number of iterations
     		for(int j = 0; j<this.NUMPARAMOPTIMIZATION; j++){
     			
-        		
         		ZuhaitzBitarra<String> paramTweakTree = new ZuhaitzBitarra<String>(); 
         		paramTweakTree.cloneTree(currenTree.getRoot());//we clone the currenTree in order not to lose the current tree
         		paramTweakTree.randomizeParams();//we tweak the parameters in this new copied tree
@@ -494,7 +490,7 @@ public class javiGP {
     		}
     		//now we repeat the process all over again with each tree in the population
     	}
-    	*/
+    	//END OF PARAMETER OPTIMIZATION
     	
     	//Update puntuations
     	for(int i =0; i<CROSSOVERNUMBER-1;i++){
@@ -546,7 +542,7 @@ public class javiGP {
 				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//HAMMING//"+techniqueName+".csv");
 				}
 			else{//HAMMING-SEQUENCE
-				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//HAMMING-SEQUENCE//"+techniqueName+".csv");
+				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//SEQUENCE-HAMMING//"+techniqueName+".csv");
 				}
 	 		csvWriter.append(techniqueName + "2");
 	 		csvWriter.append(",");
@@ -662,7 +658,7 @@ public class javiGP {
 		
 		
 		
-
+		/*
 		//Mnemonica
 		//String Deck4 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
 		
@@ -1370,17 +1366,21 @@ public class javiGP {
 						}
 					}
 					
-					gp.pointsToCSV(technique,"SECOND_EXP1point",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
+					gp.pointsToCSV(technique,"FIRST_EXP",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
 				}
 				Points1n2.clear();Points2n2.clear();Points3n2.clear();Points1n4.clear();Points2n4.clear();Points3n4.clear();Points1n8.clear();Points2n8.clear();Points3n8.clear();Points1n16.clear();Points1n32.clear();Points2n32.clear();Points3n32.clear();techNum1n2.clear();techNum2n2.clear();techNum3n2.clear();techNum1n4.clear();techNum2n4.clear();techNum3n4.clear();techNum1n8.clear();techNum2n8.clear();techNum3n8.clear();techNum1n16.clear();techNum2n16.clear();techNum3n16.clear();techNum1n32.clear();techNum2n32.clear();techNum3n32.clear();
-		}
-		/*
+		} END TEST 0*/
 		
+		
+		
+		
+		
+		//TEST 1
 		
 		javiGP gp = new javiGP();
 		//gp.pointsToCSV(technique,Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32);
 		gp.initializeNumbersArray();
-		//String Deck4 = "[2s, 1c, 11c, 12h, 10d, 9d, 9h, 13h, 3c, 8d, 8s, 6s, 13c, 3d, 7d, 10c, 9s, 1s, 6c, 10h, 6h, 10s, 1d, 9c, 2c, 13s, 7h, 12s, 4h, 7s, 5d, 12d, 11h, 3h, 4s, 11s, 6d, 8c, 12c, 11d, 13d, 5h, 8h, 5c, 4d, 2d, 2h, 3s, 7c, 4c, 5s, 1h]";
+		String Deck4 = "[2s, 1c, 11c, 12h, 10d, 9d, 9h, 13h, 3c, 8d, 8s, 6s, 13c, 3d, 7d, 10c, 9s, 1s, 6c, 10h, 6h, 10s, 1d, 9c, 2c, 13s, 7h, 12s, 4h, 7s, 5d, 12d, 11h, 3h, 4s, 11s, 6d, 8c, 12c, 11d, 13d, 5h, 8h, 5c, 4d, 2d, 2h, 3s, 7c, 4c, 5s, 1h]";
 		gp.desiredDeckString= Deck4;
 		gp.buildPopulation();
 		
@@ -1396,7 +1396,7 @@ public class javiGP {
 			//Points1n2.add(gp.population.get(0).getSecondElement());
 			j++;
 		}
-		gp.printPopulation(3);*/
+		gp.printPopulation(3);
 		
 		
 		

@@ -1,0 +1,90 @@
+System.out.println("//Intercalation-Insertion");
+		System.out.println("//n=2");
+		System.out.print("//");
+		Baraja.inPartialFaroCurrentDeck(13);
+		Baraja.slipCutCurrentDeck(26);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=4");
+		System.out.print("//");
+		Baraja.inPartialFaroCurrentDeck(13);
+		Baraja.slipCutCurrentDeck(26);		
+		Baraja.inPartialFaroCurrentDeck(14);
+		Baraja.slipCutCurrentDeck(27);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=8");
+		System.out.print("//");
+		Baraja.inPartialFaroCurrentDeck(13);
+		Baraja.slipCutCurrentDeck(26);		
+		Baraja.inPartialFaroCurrentDeck(14);
+		Baraja.slipCutCurrentDeck(27);
+		Baraja.inPartialFaroCurrentDeck(11);
+		Baraja.slipCutCurrentDeck(25);
+		Baraja.inPartialFaroCurrentDeck(10);
+		Baraja.slipCutCurrentDeck(24);		
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=16");
+		System.out.print("//");
+		Baraja.inPartialFaroCurrentDeck(13);
+		Baraja.slipCutCurrentDeck(26);		
+		Baraja.inPartialFaroCurrentDeck(14);
+		Baraja.slipCutCurrentDeck(27);
+		Baraja.inPartialFaroCurrentDeck(11);
+		Baraja.slipCutCurrentDeck(25);
+		Baraja.inPartialFaroCurrentDeck(10);
+		Baraja.slipCutCurrentDeck(24);
+		
+		Baraja.inPartialFaroCurrentDeck(9);
+		Baraja.slipCutCurrentDeck(23);
+		Baraja.inPartialFaroCurrentDeck(8);
+		Baraja.slipCutCurrentDeck(22);
+		Baraja.inPartialFaroCurrentDeck(7);
+		Baraja.slipCutCurrentDeck(21);
+		Baraja.inPartialFaroCurrentDeck(6);
+		Baraja.slipCutCurrentDeck(20);
+		Baraja.printCurrentDeck();
+		Baraja.doDeckToBackupState();
+		
+		System.out.println("//n=32");
+		System.out.print("//");
+		Baraja.inPartialFaroCurrentDeck(13);
+		Baraja.slipCutCurrentDeck(26);		
+		Baraja.inPartialFaroCurrentDeck(14);
+		Baraja.slipCutCurrentDeck(27);
+		Baraja.inPartialFaroCurrentDeck(11);
+		Baraja.slipCutCurrentDeck(25);
+		Baraja.inPartialFaroCurrentDeck(10);
+		Baraja.slipCutCurrentDeck(24);
+		
+		Baraja.inPartialFaroCurrentDeck(9);
+		Baraja.slipCutCurrentDeck(23);
+		Baraja.inPartialFaroCurrentDeck(8);
+		Baraja.slipCutCurrentDeck(22);
+		Baraja.inPartialFaroCurrentDeck(7);
+		Baraja.slipCutCurrentDeck(21);
+		Baraja.inPartialFaroCurrentDeck(6);
+		Baraja.slipCutCurrentDeck(20);
+		
+		Baraja.inPartialFaroCurrentDeck(2);
+		Baraja.slipCutCurrentDeck(4);
+		Baraja.inPartialFaroCurrentDeck(8);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.inPartialFaroCurrentDeck(11);
+		Baraja.slipCutCurrentDeck(12);
+		Baraja.inPartialFaroCurrentDeck(2);
+		Baraja.slipCutCurrentDeck(33);
+		
+		Baraja.inPartialFaroCurrentDeck(20);
+		Baraja.slipCutCurrentDeck(21);
+		Baraja.inPartialFaroCurrentDeck(5);
+		Baraja.slipCutCurrentDeck(6);
+		Baraja.inPartialFaroCurrentDeck(7);
+		Baraja.slipCutCurrentDeck(8);
+		Baraja.inPartialFaroCurrentDeck(9);
+		Baraja.slipCutCurrentDeck(10);
+		Baraja.printCurrentDeck();

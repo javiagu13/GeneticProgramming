@@ -76,9 +76,9 @@ public class javiGPTest {
 	private int NUMPARAMOPTIMIZATION=10; //number of times each trees parameters will be tweaked
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
-	private int LENGTHMAXOFTREE=4*2;
+	private int LENGTHMAXOFTREE=20*2;
 	private String DISTANCE="HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
-	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
+	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
 	private int TECHNUM_PENALIZATION=1;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
