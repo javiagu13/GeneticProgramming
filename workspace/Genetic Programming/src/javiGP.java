@@ -61,10 +61,10 @@ public class javiGP {
 	private int MIN=1; //Minimum number of card
 	private int MAX=52; //Maximum number of card
 	
-	private int POPULATIONSIZE=1000; //Number of Population
-	private int CROSSOVERNUMBER=500; //Crossover Rate
+	private int POPULATIONSIZE=1000; //Number of Population 1000
+	private int CROSSOVERNUMBER=500; //Crossover Rate 500
 	
-	private int MUTATION=200; //Number of mutations (technique+number)
+	private int MUTATION=200; //Number of mutations (technique+number) 200
 	private int MUTATIONUMBER=0; //Number of mutations (technique+number) REVISE CODEEEEEE
 	private int MUTATIONOPERATION=0; //Number of mutations (technique+number) REVISE CODEEEEEE
 	
@@ -72,9 +72,9 @@ public class javiGP {
 	
 	private int DEPTH=4; //INITIAL DEPTH OF TREES!! tree size / 2
 	private int LENGTHMAXOFTREE=20*2;
-	private String DISTANCE="SEQUENCE"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
-	private String TECHNUM_CONSTRAINT="NO";//YES, NO if the number of techniques is going to be a constraint
-	private int TECHNUM_PENALIZATION=1;
+	private String DISTANCE="HAMMING"; //SEQUENCE, HAMMING, HAMMING-SEQUENCE
+	private String TECHNUM_CONSTRAINT="YES";//YES, NO if the number of techniques is going to be a constraint
+	private int TECHNUM_PENALIZATION=5;
 	
 	private String[] operators={"cut","slipcut","slipcutup","peal","pealup","infaro","infaroup","outfaro","outfaroup"};
 	private String[] numbers=new String[MAX-1];
@@ -593,7 +593,7 @@ public class javiGP {
 				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//HAMMING//"+techniqueName+".csv");
 				}
 			else{//HAMMING-SEQUENCE
-				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//SEQUENCE-HAMMING//"+techniqueName+".csv");
+				csvWriter= new FileWriter("C://Users//Javi//Documents//GitHub//GeneticProgramming//Experiments//"+expName+"//HAMMING-SEQUENCE//"+techniqueName+".csv");
 				}
 	 		csvWriter.append(techniqueName + "2");
 	 		csvWriter.append(",");
@@ -709,10 +709,10 @@ public class javiGP {
 		
 		
 		
-		/*
+		
 		//Mnemonica
 		//String Deck4 = "[4c, 2h, 7d, 3c, 4h, 6d, 1s, 5h, 9s, 2s, 12h, 3d, 12c, 8h, 6s, 5s, 9h, 13c, 2d, 11h, 3s, 8s, 6h, 10c, 5d, 13d, 2c, 3h, 8d, 5c, 13s, 11d, 8c, 10s, 13h, 11c, 7s, 10h, 1d, 4s, 7h, 4d, 1c, 9c, 11s, 12d, 7c, 12s, 10d, 6c, 1h, 9d]";
-		
+		/*
 		ArrayList<Integer> Points1n2=new ArrayList<>();
 		ArrayList<Integer> Points2n2=new ArrayList<>();
 		ArrayList<Integer> Points3n2=new ArrayList<>();
@@ -753,7 +753,7 @@ public class javiGP {
 		ArrayList<Integer> techNum2n32=new ArrayList<>();
 		ArrayList<Integer> techNum3n32=new ArrayList<>();
 		
-		for(int w=0; w<21; w++){
+		for(int w=0; w<9; w++){
 			String technique = "";
 			String Deck1 = "";
 			String Deck2 = "";
@@ -878,7 +878,7 @@ public class javiGP {
 				//N=32  ( 10 27 23 27 37 42 18 21 37 15 18 15 29 38 38 38 37 26 40 16 30 25 39 23 11 38 20 41 19 10 38 39 )
 				Deck5 = "[13h, 2s, 1d, 12h, 3s, 11h, 9d, 5s, 3h, 7h, 2c, 3c, 9h, 5d, 13c, 2h, 10d, 10h, 11s, 8c, 4h, 11c, 1h, 10s, 9c, 10c, 4d, 4s, 1s, 2d, 6d, 13d, 9s, 12d, 8s, 4c, 8h, 6s, 11d, 6c, 12s, 12c, 3d, 5c, 8d, 13s, 7c, 7d, 5h, 7s, 6h, 1c]";
 			}	
-			if(w==9){
+			/*if(w==9){
 				technique = "CUTTING-INSERTION";
 				//N=2  ( 27 52 )
 				Deck1 = "[12d, 11d, 10d, 9d, 8d, 7d, 6d, 5d, 4d, 3d, 2d, 1d, 13c, 12c, 11c, 10c, 9c, 8c, 7c, 6c, 5c, 4c, 3c, 2c, 1c, 1s, 2s, 3s, 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, 12s, 13s, 1h, 2h, 3h, 4h, 5h, 6h, 7h, 8h, 9h, 10h, 11h, 12h, 13h, 13d]";
@@ -1417,10 +1417,10 @@ public class javiGP {
 						}
 					}
 					
-					gp.pointsToCSV(technique,"FIRST_EXP",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
+					gp.pointsToCSV(technique,"THIRDEXP_ParamOptimization_15",Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32 ,techNum1n2, techNum2n2, techNum3n2, techNum1n4, techNum2n4, techNum3n4, techNum1n8, techNum2n8, techNum3n8, techNum1n16, techNum2n16, techNum3n16, techNum1n32, techNum2n32, techNum3n32);
 				}
 				Points1n2.clear();Points2n2.clear();Points3n2.clear();Points1n4.clear();Points2n4.clear();Points3n4.clear();Points1n8.clear();Points2n8.clear();Points3n8.clear();Points1n16.clear();Points1n32.clear();Points2n32.clear();Points3n32.clear();techNum1n2.clear();techNum2n2.clear();techNum3n2.clear();techNum1n4.clear();techNum2n4.clear();techNum3n4.clear();techNum1n8.clear();techNum2n8.clear();techNum3n8.clear();techNum1n16.clear();techNum2n16.clear();techNum3n16.clear();techNum1n32.clear();techNum2n32.clear();techNum3n32.clear();
-		} END TEST 0*/
+		} */
 		
 		
 		
@@ -1431,12 +1431,16 @@ public class javiGP {
 		javiGP gp = new javiGP();
 		//gp.pointsToCSV(technique,Points1n2, Points2n2, Points3n2, Points1n4, Points2n4, Points3n4, Points1n8, Points2n8, Points3n8, Points1n16, Points2n16, Points3n16, Points1n32, Points2n32, Points3n32);
 		gp.initializeNumbersArray();
-		String Deck4 = "[2s, 1c, 11c, 12h, 10d, 9d, 9h, 13h, 3c, 8d, 8s, 6s, 13c, 3d, 7d, 10c, 9s, 1s, 6c, 10h, 6h, 10s, 1d, 9c, 2c, 13s, 7h, 12s, 4h, 7s, 5d, 12d, 11h, 3h, 4s, 11s, 6d, 8c, 12c, 11d, 13d, 5h, 8h, 5c, 4d, 2d, 2h, 3s, 7c, 4c, 5s, 1h]";
-		gp.desiredDeckString= Deck4;
+		//String Deck4 = "[2s, 1c, 11c, 12h, 10d, 9d, 9h, 13h, 3c, 8d, 8s, 6s, 13c, 3d, 7d, 10c, 9s, 1s, 6c, 10h, 6h, 10s, 1d, 9c, 2c, 13s, 7h, 12s, 4h, 7s, 5d, 12d, 11h, 3h, 4s, 11s, 6d, 8c, 12c, 11d, 13d, 5h, 8h, 5c, 4d, 2d, 2h, 3s, 7c, 4c, 5s, 1h]";
+		//gp.desiredDeckString= Deck4;
+		gp.initialDeckString=  "[b, b, r, r, b, r, b, r, r, b, b, b, b, r, b, r, r, r, b, r, b, r, r, b, r, r, b, r, b, b, b, r, b, r, b, r, b, b, b, r, r, r, b, r, r, r, b, b, b, r, b, r]";
+		//gp.initialDeckString=  "[b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r, b, r]";
+		gp.desiredDeckString= "[b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r]";
+		
 		gp.buildPopulation();
 		
 		int j = 0;
-		int iterations=150;
+		int iterations=500;
 			
 		//while(gp.population.get(0).getSecondElement()<510&&i<iterations){
 		while(gp.population.get(0).getSecondElement()<510&&j<iterations){
